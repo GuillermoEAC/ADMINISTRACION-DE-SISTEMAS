@@ -1,0 +1,9 @@
+COMANDOS 
+
+LINUX 
+
+History -c 
+
+WINDOWS
+
+ir al escritorio -- cd $HOME\Desktop
