@@ -1,3 +1,5 @@
+
+
 #!/bin/bash
 
 # ==========================================
@@ -16,7 +18,8 @@ RESET='\033[0m'
 source ./tarea1_diag.sh
 source ./tarea2_dhcp.sh
 source ./tarea3_dns.sh
-source ./tarea4_ssh.sh   
+source ./tarea4_ssh.sh
+source ./tarea5_ftp.sh
 
 # ==========================================
 # 3. VERIFICACIÓN DE PERMISOS ROOT
@@ -34,6 +37,7 @@ submenu_tarea1() {
     while true; do
         clear
         echo -e "\n${AZUL}=========================================${RESET}"
+  GNU nano 7.2                                                               menu.sh *
         echo -e "${AZUL}      TAREA 1: DIAGNÓSTICO Y RED         ${RESET}"
         echo -e "${AZUL}=========================================${RESET}"
         echo "1. Ejecutar Diagnóstico de Sistema"
@@ -48,7 +52,7 @@ submenu_tarea1() {
             3) break ;;
             *) echo -e "${ROJO}[!] Opción no válida.${RESET}" ;;
         esac
-        
+
         if [[ "$OPCION" != "3" ]]; then
             echo ""
             echo -e "${AMARILLO}---------------------------------------${RESET}"
@@ -79,7 +83,7 @@ submenu_dhcp() {
             5) break ;;
             *) echo -e "${ROJO}[!] Opción no válida.${RESET}" ;;
         esac
-        
+
         if [[ "$OPCION" != "5" ]]; then
             echo ""
             echo -e "${AMARILLO}---------------------------------------${RESET}"
@@ -124,7 +128,6 @@ submenu_dns() {
     done
 }
 
-# ---  SUBMENÚ PARA SSH ---
 submenu_ssh() {
     while true; do
         clear
@@ -152,6 +155,40 @@ submenu_ssh() {
     done
 }
 
+# --- SUBMENÚ PARA FTP (TAREA 5) ---
+submenu_ftp() {
+    while true; do
+        clear
+        echo -e "\n${AZUL}=========================================${RESET}"
+        echo -e "${AZUL}               TAREA 5: MENÚ FTP             ${RESET}"
+        echo -e "${AZUL}=========================================${RESET}"
+        echo -e "1. Configuración inicial (vsftpd)"
+        echo -e "2. Verificar instalación y estado"
+        echo -e "3. Alta de usuarios"
+        echo -e "4. Cambiar usuario de grupo"
+        echo -e "5. Eliminar usuario"
+        echo -e "6. Volver al Menú Principal"
+        echo -e "${AZUL}-----------------------------------------${RESET}"
+
+        read -p "Seleccione una opción [1-6]: " OPCION
+        case $OPCION in
+            1) configuracion_inicial_ftp ;;
+            2) verificar_instalacion_ftp ;;  # <-- NUEVA OPCIÓN
+            3) gestion_alta_usuarios ;;
+            4) cambiar_grupo_ftp ;;
+            5) eliminar_usuario_ftp ;;
+            6) break ;;
+            *) echo -e "${ROJO}[!] Opción no válida.${RESET}" ;;
+        esac
+
+        if [[ "$OPCION" != "6" ]]; then
+            echo ""
+            echo -e "${AMARILLO}---------------------------------------${RESET}"
+            read -p "Presiona Enter para continuar..." dummy
+        fi
+    done
+}
+
 # ==========================================
 # 5. MENÚ PRINCIPAL ORQUESTADOR
 # ==========================================
@@ -163,18 +200,20 @@ while true; do
     echo "1. Módulo de Diagnóstico y Red (Tarea 1)"
     echo "2. Módulo Servidor DHCP (Tarea 2)"
     echo "3. Módulo Servidor DNS (Tarea 3)"
-    echo "4. Módulo Servidor SSH (Tarea 4)" 
-    echo "5. Salir completamente"
+    echo "4. Módulo Servidor SSH (Tarea 4)"
+    echo "5. Módulo Servidor FTP (Tarea 5)"
+    echo "6. Salir completamente"
     echo -e "${VERDE}----------------------------------------------------${RESET}"
-    
-    read -p "Selecciona un módulo [1-5]: " OPCION_MAIN
+
+    read -p "Selecciona un módulo [1-6]: " OPCION_MAIN
 
     case $OPCION_MAIN in
         1) submenu_tarea1 ;;
         2) submenu_dhcp ;;
         3) submenu_dns ;;
-        4) submenu_ssh ;; 
-        5) echo -e "${VERDE}Saliendo del administrador...${RESET}"; exit 0 ;;
-        *) echo -e "${ROJO}[ERROR] Opción no válida. Elige del 1 al 5.${RESET}"; sleep 2 ;;
+        4) submenu_ssh ;;
+        5) submenu_ftp ;;
+        6) echo -e "${VERDE}Saliendo del administrador...${RESET}"; exit 0 ;;
+        *) echo -e "${ROJO}[ERROR] Opción no válida. Elige del 1 al 6.${RESET}"; sleep 2 ;;
     esac
 done
