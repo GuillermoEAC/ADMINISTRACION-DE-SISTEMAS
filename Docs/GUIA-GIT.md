@@ -48,3 +48,23 @@ mkdir /mnt/practicas
 
 ***Nota:***<i> Para mover un archivo que no esta dentro de la carpeta compartida ejecutar: mv /root/nombre\_de\_tu\_script.sh /mnt/practicas/</i>
 
+
+
+<i>Como entrar a mis scripts desde Debian </i>
+
+
+
+<i>	cd /mnt/practicas</i>
+
+<i>	chmod +x \*.sh (por si a caso no se puede ejecutar)</i>
+
+<i>	./nom\_script.sh</i>
+
+
+
+<i>Hacer un nuevo script </i>
+
+	
+
+<i>	nano /mnt/practicas/nuevo\_script.sh</i>
+
