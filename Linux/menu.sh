@@ -20,6 +20,7 @@ source ./tarea2_dhcp.sh
 source ./tarea3_dns.sh
 source ./tarea4_ssh.sh
 source ./tarea5_ftp.sh
+source ./tarea6_http.sh
 
 # ==========================================
 # 3. VERIFICACIÓN DE PERMISOS ROOT
@@ -190,6 +191,40 @@ submenu_ftp() {
 }
 
 # ==========================================
+# SUBMENÚ PARA HTTP (TAREA 6)
+# ==========================================
+submenu_http() {
+    while true; do
+        clear
+        echo -e "\n${AZUL}=========================================${RESET}"
+        echo -e "${AZUL}        TAREA 6: MENÚ SERVIDOR HTTP      ${RESET}"
+        echo -e "${AZUL}=========================================${RESET}"
+        echo -e "1. Despliegue dinámico de Apache2"
+        echo -e "2. Despliegue dinámico de Nginx"
+        echo -e "3. Despliegue dinámico de Tomcat"
+        echo -e "4. Verificar instalaciones y puertos activos"
+        echo -e "5. Volver al Menú Principal"
+        echo -e "${AZUL}-----------------------------------------${RESET}"
+
+        read -p "Seleccione una opción [1-5]: " OPCION
+        case $OPCION in
+            1) menu_instalar_apache ;;
+            2) menu_instalar_nginx ;;
+            3) menu_instalar_tomcat ;;
+            4) verificar_http ;;
+            5) break ;;
+            *) echo -e "${ROJO}[!] Opción no válida.${RESET}" ;;
+        esac
+
+        if [[ "$OPCION" != "5" ]]; then
+            echo ""
+            echo -e "${AMARILLO}---------------------------------------${RESET}"
+            read -p "Presiona Enter para continuar..." dummy
+        fi
+    done
+}
+
+# ==========================================
 # 5. MENÚ PRINCIPAL ORQUESTADOR
 # ==========================================
 while true; do
@@ -202,7 +237,8 @@ while true; do
     echo "3. Módulo Servidor DNS (Tarea 3)"
     echo "4. Módulo Servidor SSH (Tarea 4)"
     echo "5. Módulo Servidor FTP (Tarea 5)"
-    echo "6. Salir completamente"
+    echo "6. Módulo Servidor HTTP (Tarea 6)" 
+    echo "7. Salir completamente"            
     echo -e "${VERDE}----------------------------------------------------${RESET}"
 
     read -p "Selecciona un módulo [1-6]: " OPCION_MAIN
@@ -213,7 +249,8 @@ while true; do
         3) submenu_dns ;;
         4) submenu_ssh ;;
         5) submenu_ftp ;;
-        6) echo -e "${VERDE}Saliendo del administrador...${RESET}"; exit 0 ;;
-        *) echo -e "${ROJO}[ERROR] Opción no válida. Elige del 1 al 6.${RESET}"; sleep 2 ;;
+	6) submenu_http ;; 
+        7) echo -e "${VERDE}Saliendo del administrador...${RESET}"; exit 0 ;;
+        *) echo -e "${ROJO}[ERROR] Opción no válida. Elige del 1 al 7.${RESET}"; sleep 2 ;;
     esac
 done
