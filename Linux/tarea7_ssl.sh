@@ -76,7 +76,7 @@ instalar_y_configurar_servicio() {
     local puerto=$3
     local paquete=$4
 
-    # Le decimos exactamente qué paquete bajar de Debian (ACTUALIZADO A TOMCAT 10)
+    # Regresamos a Tomcat 9 que es el oficial de Debian
     local pkg_debian=""
     case $servicio in
         "Apache") pkg_debian="apache2" ;;
@@ -94,7 +94,6 @@ instalar_y_configurar_servicio() {
         apt-get install -f -y -qq >/dev/null 2>&1
     fi
 
-    # Configuración de puertos y creación AUTOMÁTICA de HTML
     case $servicio in
         "Apache")
             sed -i "s/Listen 80/Listen $puerto/g" /etc/apache2/ports.conf
@@ -110,6 +109,7 @@ instalar_y_configurar_servicio() {
             systemctl restart nginx
             ;;
         "Tomcat")
+            # Corregido a tomcat10
             sed -i "s/port=\"8080\"/port=\"$puerto\"/g" /etc/tomcat10/server.xml
             mkdir -p /var/lib/tomcat10/webapps/ROOT
             rm -f /var/lib/tomcat10/webapps/ROOT/index*
