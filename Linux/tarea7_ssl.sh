@@ -134,6 +134,11 @@ generar_certificado_ssl() {
         -keyout /etc/ssl/reprobados/servidor.key \
         -out /etc/ssl/reprobados/servidor.crt \
         -subj "/C=MX/ST=Sinaloa/L=Mochis/O=UAS/OU=FIM/CN=www.reprobados.com" >/dev/null 2>&1
+        
+        # EL PARCHE SALVA-VIDAS PARA TOMCAT:
+        # Le damos permiso a todos los usuarios de leer las llaves de seguridad
+        chmod 644 /etc/ssl/reprobados/servidor.key
+        chmod 644 /etc/ssl/reprobados/servidor.crt
     fi
 }
 
@@ -208,10 +213,17 @@ EOF
     fi
 }
 
-# --- 6. RESUMEN DE VERIFICACIÓN (Limpio) ---
+# --- 6. RESUMEN DE VERIFICACIÓN ---
 realizar_resumen_instalacion() {
     local serv=$1
     local pto=$2
+    
+    # Parche de paciencia: Java es pesado y tarda en despertar
+    if [ "$serv" == "Tomcat" ]; then
+        echo -e "${AMARILLO}[*] Dando 4 segundos para que Java inicie motores...${RESET}"
+        sleep 4
+    fi
+
     echo -e "\n${AZUL}=========================================${RESET}"
     echo -e "${AZUL}        RESUMEN DE INSTALACIÓN           ${RESET}"
     echo -e "${AZUL}=========================================${RESET}"
@@ -219,7 +231,8 @@ realizar_resumen_instalacion() {
     
     local p_name="${serv,,}"; [[ "$serv" == "Apache" ]] && p_name="apache2"; [[ "$serv" == "Tomcat" ]] && p_name="java"
     echo -ne "Estado del proceso: "
-    pgrep -x "$p_name" >/dev/null && echo -e "${VERDE}OK${RESET}" || echo -e "${ROJO}FAIL${RESET}"
+    # Quitamos el límite -x para que encuentre el proceso aunque tenga un nombre largo
+    pgrep "$p_name" >/dev/null && echo -e "${VERDE}OK${RESET}" || echo -e "${ROJO}FAIL${RESET}"
     
     echo -ne "Puerto HTTP activo ($pto): "
     ss -tuln | grep -q ":$pto " && echo -e "${VERDE}OK${RESET}" || echo -e "${ROJO}CERRADO${RESET}"
@@ -232,3 +245,4 @@ realizar_resumen_instalacion() {
     fi
     echo -e "${AZUL}-----------------------------------------${RESET}"
 }
+
