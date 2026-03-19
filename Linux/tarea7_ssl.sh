@@ -207,7 +207,8 @@ EOF
                 systemctl restart vsftpd
                 ;;
             "Tomcat")
-                sed -i "/Connector port=\"$puerto_http\"/a \    <Connector port=\"$puerto_ssl\" protocol=\"org.apache.coyote.http11.Http11NioProtocol\" maxThreads=\"150\" SSLEnabled=\"true\" scheme=\"https\" secure=\"true\" clientAuth=\"false\" sslProtocol=\"TLS\">\n      <SSLHostConfig>\n        <Certificate certificateFile=\"/etc/ssl/reprobados/servidor.crt\" certificateKeyFile=\"/etc/ssl/reprobados/servidor.key\" type=\"RSA\" />\n      </SSLHostConfig>\n    </Connector>" /etc/tomcat10/server.xml
+                # Inyección segura: lo ponemos antes de cerrar el </Service> para no romper el XML
+                sed -i "/<\/Service>/i \    <Connector port=\"$puerto_ssl\" protocol=\"org.apache.coyote.http11.Http11NioProtocol\" maxThreads=\"150\" SSLEnabled=\"true\" scheme=\"https\" secure=\"true\" clientAuth=\"false\" sslProtocol=\"TLS\">\n      <SSLHostConfig>\n        <Certificate certificateFile=\"/etc/ssl/reprobados/servidor.crt\" certificateKeyFile=\"/etc/ssl/reprobados/servidor.key\" type=\"RSA\" />\n      </SSLHostConfig>\n    </Connector>" /etc/tomcat10/server.xml
                 systemctl restart tomcat10
                 ;;
         esac
