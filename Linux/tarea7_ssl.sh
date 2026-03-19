@@ -69,72 +69,62 @@ navegar_y_descargar_ftp() {
     fi
 }
 
-# --- 3. FUNCIÓN DE INSTALACIÓN Y CONFIGURACIÓN ---
+# --- 3. INSTALACIÓN Y HTML PERSONALIZADO ---
 instalar_y_configurar_servicio() {
-    local serv=$1
+    local servicio=$1
     local metodo=$2
-    local pto=$3
+    local puerto=$3
     local paquete=$4
 
-    # ARREGLO DE NOMBRES PARA DEBIAN
-    local pkg_apt=""
-    case $serv in
-        "Apache") pkg_apt="apache2" ;;
-        "Nginx") pkg_apt="nginx" ;;
-        "vsftpd") pkg_apt="vsftpd" ;;
-        "Tomcat") pkg_apt="tomcat9" ;;
+    # Le decimos exactamente qué paquete bajar de Debian
+    local pkg_debian=""
+    case $servicio in
+        "Apache") pkg_debian="apache2" ;;
+        "Nginx") pkg_debian="nginx" ;;
+        "vsftpd") pkg_debian="vsftpd" ;;
+        "Tomcat") pkg_debian="tomcat9 tomcat9-admin" ;; 
     esac
 
     echo -e "\n${CYAN}>>> Instalando $servicio (Modo: $metodo)...${RESET}"
 
     if [ "$metodo" == "web" ]; then
-        apt-get update -qq && apt-get install -y "$pkg_apt" -qq >/dev/null 2>&1
+        # Ahora sí descargará el paquete real
+        apt-get update -qq && apt-get install -y $pkg_debian -qq >/dev/null 2>&1
     else
         dpkg -i "$paquete" >/dev/null 2>&1
         apt-get install -f -y -qq >/dev/null 2>&1
     fi
 
-    # Configuración de puertos y creación de HTML personalizado
-# Configuración de puertos y creación AUTOMÁTICA de HTML
-    case $serv in
+    # Configuración de puertos y creación AUTOMÁTICA de HTML
+    case $servicio in
         "Apache")
-            sed -i "s/Listen 80/Listen $pto/g" /etc/apache2/ports.conf
-            sed -i "s/<VirtualHost \*:80>/<VirtualHost \*:$pto>/g" /etc/apache2/sites-available/000-default.conf
-            
-            # Limpiamos basura vieja y creamos el nuevo dinámico con UTF-8
+            sed -i "s/Listen 80/Listen $puerto/g" /etc/apache2/ports.conf
+            sed -i "s/<VirtualHost \*:80>/<VirtualHost \*:$puerto>/g" /etc/apache2/sites-available/000-default.conf
             rm -f /var/www/html/index*
-            echo "<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body><h1>[✓] UAS-FIM: $serv activo en puerto $pto</h1></body></html>" > /var/www/html/index.html
-            
+            echo "<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body><h1>[✓] UAS-FIM: $servicio activo en puerto $puerto</h1></body></html>" > /var/www/html/index.html
             systemctl restart apache2
             ;;
         "Nginx")
-            sed -i "s/listen 80/listen $pto/g" /etc/nginx/sites-enabled/default
-            
-            # Limpiamos basura vieja y creamos el nuevo dinámico con UTF-8
+            sed -i "s/listen 80/listen $puerto/g" /etc/nginx/sites-enabled/default
             rm -f /var/www/html/index*
-            echo "<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body><h1>[✓] UAS-FIM: $serv activo en puerto $pto</h1></body></html>" > /var/www/html/index.html
-            
+            echo "<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body><h1>[✓] UAS-FIM: $servicio activo en puerto $puerto</h1></body></html>" > /var/www/html/index.html
             systemctl restart nginx
             ;;
         "Tomcat")
-            sed -i "s/port=\"8080\"/port=\"$pto\"/g" /etc/tomcat9/server.xml
+            sed -i "s/port=\"8080\"/port=\"$puerto\"/g" /etc/tomcat9/server.xml
             mkdir -p /var/lib/tomcat9/webapps/ROOT
-            
-            # Limpiamos basura vieja en Tomcat
             rm -f /var/lib/tomcat9/webapps/ROOT/index*
-            echo "<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body><h1>[✓] UAS-FIM: $serv activo en puerto $pto</h1></body></html>" > /var/lib/tomcat9/webapps/ROOT/index.html
-            
+            echo "<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body><h1>[✓] UAS-FIM: $servicio activo en puerto $puerto</h1></body></html>" > /var/lib/tomcat9/webapps/ROOT/index.html
             systemctl restart tomcat9
             ;;
         "vsftpd")
-            grep -q "listen_port" /etc/vsftpd.conf || echo "listen_port=$pto" >> /etc/vsftpd.conf
-            sed -i "s/listen_port=.*/listen_port=$pto/g" /etc/vsftpd.conf
+            grep -q "listen_port" /etc/vsftpd.conf || echo "listen_port=$puerto" >> /etc/vsftpd.conf
+            sed -i "s/listen_port=.*/listen_port=$puerto/g" /etc/vsftpd.conf
             systemctl restart vsftpd
             ;;
     esac
     echo -e "${VERDE}[✓] Configuración base lista.${RESET}"
 }
-
 
 # --- 4. GENERACIÓN DE CERTIFICADO ÚNICO ---
 generar_certificado_ssl() {
