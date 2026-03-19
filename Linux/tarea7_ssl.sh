@@ -76,19 +76,18 @@ instalar_y_configurar_servicio() {
     local puerto=$3
     local paquete=$4
 
-    # Le decimos exactamente qué paquete bajar de Debian
+    # Le decimos exactamente qué paquete bajar de Debian (ACTUALIZADO A TOMCAT 10)
     local pkg_debian=""
     case $servicio in
         "Apache") pkg_debian="apache2" ;;
         "Nginx") pkg_debian="nginx" ;;
         "vsftpd") pkg_debian="vsftpd" ;;
-        "Tomcat") pkg_debian="tomcat9 tomcat9-admin" ;; 
+        "Tomcat") pkg_debian="tomcat10 tomcat10-admin" ;; 
     esac
 
     echo -e "\n${CYAN}>>> Instalando $servicio (Modo: $metodo)...${RESET}"
 
     if [ "$metodo" == "web" ]; then
-        # Ahora sí descargará el paquete real
         apt-get update -qq && apt-get install -y $pkg_debian -qq >/dev/null 2>&1
     else
         dpkg -i "$paquete" >/dev/null 2>&1
@@ -111,11 +110,11 @@ instalar_y_configurar_servicio() {
             systemctl restart nginx
             ;;
         "Tomcat")
-            sed -i "s/port=\"8080\"/port=\"$puerto\"/g" /etc/tomcat9/server.xml
-            mkdir -p /var/lib/tomcat9/webapps/ROOT
-            rm -f /var/lib/tomcat9/webapps/ROOT/index*
-            echo "<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body><h1>[✓] UAS-FIM: $servicio activo en puerto $puerto</h1></body></html>" > /var/lib/tomcat9/webapps/ROOT/index.html
-            systemctl restart tomcat9
+            sed -i "s/port=\"8080\"/port=\"$puerto\"/g" /etc/tomcat10/server.xml
+            mkdir -p /var/lib/tomcat10/webapps/ROOT
+            rm -f /var/lib/tomcat10/webapps/ROOT/index*
+            echo "<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body><h1>[✓] UAS-FIM: $servicio activo en puerto $puerto</h1></body></html>" > /var/lib/tomcat10/webapps/ROOT/index.html
+            systemctl restart tomcat10
             ;;
         "vsftpd")
             grep -q "listen_port" /etc/vsftpd.conf || echo "listen_port=$puerto" >> /etc/vsftpd.conf
@@ -186,7 +185,6 @@ EOF
                 systemctl restart nginx
                 ;;
             "vsftpd")
-                # FTP usa el mismo puerto para normal y seguro (explícito)
                 export PUERTO_SSL_ACTIVO=$puerto_http
                 {
                     echo "ssl_enable=YES"
@@ -200,8 +198,8 @@ EOF
                 systemctl restart vsftpd
                 ;;
             "Tomcat")
-                sed -i "/Connector port=\"$puerto_http\"/a \    <Connector port=\"$puerto_ssl\" protocol=\"org.apache.coyote.http11.Http11NioProtocol\" maxThreads=\"150\" SSLEnabled=\"true\" scheme=\"https\" secure=\"true\" clientAuth=\"false\" sslProtocol=\"TLS\">\n      <SSLHostConfig>\n        <Certificate certificateFile=\"/etc/ssl/reprobados/servidor.crt\" certificateKeyFile=\"/etc/ssl/reprobados/servidor.key\" type=\"RSA\" />\n      </SSLHostConfig>\n    </Connector>" /etc/tomcat9/server.xml
-                systemctl restart tomcat9
+                sed -i "/Connector port=\"$puerto_http\"/a \    <Connector port=\"$puerto_ssl\" protocol=\"org.apache.coyote.http11.Http11NioProtocol\" maxThreads=\"150\" SSLEnabled=\"true\" scheme=\"https\" secure=\"true\" clientAuth=\"false\" sslProtocol=\"TLS\">\n      <SSLHostConfig>\n        <Certificate certificateFile=\"/etc/ssl/reprobados/servidor.crt\" certificateKeyFile=\"/etc/ssl/reprobados/servidor.key\" type=\"RSA\" />\n      </SSLHostConfig>\n    </Connector>" /etc/tomcat10/server.xml
+                systemctl restart tomcat10
                 ;;
         esac
         echo -e "${VERDE}[✓] SSL/TLS activado.${RESET}"
@@ -210,21 +208,22 @@ EOF
     fi
 }
 
-# --- 6. RESUMEN DE VERIFICACIÓN (Actualizado) ---
+# --- 6. RESUMEN DE VERIFICACIÓN (Limpio) ---
 realizar_resumen_instalacion() {
     local serv=$1
     local pto=$2
     echo -e "\n${AZUL}=========================================${RESET}"
-    echo -e "${AZUL}       RESUMEN DE INSTALACIÓN            ${RESET}"
+    echo -e "${AZUL}        RESUMEN DE INSTALACIÓN           ${RESET}"
     echo -e "${AZUL}=========================================${RESET}"
     echo -e "Servicio: $serv"
-    echo -ne "Estado del proceso: "
-    pgrep -x "${serv,,}" >/dev/null && echo -e "Estado: ${VERDE}OK${RESET}"
-
+    
     local p_name="${serv,,}"; [[ "$serv" == "Apache" ]] && p_name="apache2"; [[ "$serv" == "Tomcat" ]] && p_name="java"
-    pgrep -x "$p_name" >/dev/null && echo -e "Estado: ${VERDE}OK${RESET}" || echo -e "Estado: ${ROJO}FAIL${RESET}"
+    echo -ne "Estado del proceso: "
+    pgrep -x "$p_name" >/dev/null && echo -e "${VERDE}OK${RESET}" || echo -e "${ROJO}FAIL${RESET}"
+    
     echo -ne "Puerto HTTP activo ($pto): "
     ss -tuln | grep -q ":$pto " && echo -e "${VERDE}OK${RESET}" || echo -e "${ROJO}CERRADO${RESET}"
+    
     echo -ne "Cifrado SSL/TLS (Puerto $PUERTO_SSL_ACTIVO): "
     if [ "$PUERTO_SSL_ACTIVO" != "Ninguno" ]; then
         ss -tuln | grep -q ":$PUERTO_SSL_ACTIVO " || grep -q "ssl_enable=YES" /etc/vsftpd.conf && echo -e "${VERDE}ACTIVO${RESET}" || echo -e "${ROJO}FALLÓ${RESET}"
