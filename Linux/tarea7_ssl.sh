@@ -226,7 +226,7 @@ realizar_resumen_instalacion() {
     # Parche de paciencia: Java es pesado y tarda en despertar
     if [ "$serv" == "Tomcat" ]; then
         echo -e "${AMARILLO}[*] Dando 4 segundos para que Java inicie motores...${RESET}"
-        sleep 4
+        sleep 10
     fi
 
     echo -e "\n${AZUL}=========================================${RESET}"
