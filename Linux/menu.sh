@@ -262,7 +262,7 @@ submenu_orquestador() {
                 echo "1) Web (apt-get)  2) Privado (FTP)"
                 read -p "Elige origen: " orig
 
-                read -p "Puerto HTTP a asignar: " pto
+                read -p "Puerto principal a asignar para $serv: " pto
                 if validar_puerto_ingresado "$pto"; then
                     if [ "$orig" == "2" ]; then
                         if navegar_y_descargar_ftp "$serv"; then

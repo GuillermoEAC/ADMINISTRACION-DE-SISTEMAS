@@ -71,14 +71,14 @@ navegar_y_descargar_ftp() {
 
 # --- 3. FUNCIÓN DE INSTALACIÓN Y CONFIGURACIÓN ---
 instalar_y_configurar_servicio() {
-    local servicio=$1
+    local serv=$1
     local metodo=$2
-    local puerto=$3
+    local pto=$3
     local paquete=$4
 
     # ARREGLO DE NOMBRES PARA DEBIAN
     local pkg_apt=""
-    case $servicio in
+    case $serv in
         "Apache") pkg_apt="apache2" ;;
         "Nginx") pkg_apt="nginx" ;;
         "vsftpd") pkg_apt="vsftpd" ;;
@@ -95,28 +95,41 @@ instalar_y_configurar_servicio() {
     fi
 
     # Configuración de puertos y creación de HTML personalizado
-    case $servicio in
+# Configuración de puertos y creación AUTOMÁTICA de HTML
+    case $serv in
         "Apache")
-            sed -i "s/Listen 80/Listen $puerto/g" /etc/apache2/ports.conf
-            sed -i "s/<VirtualHost \*:80>/<VirtualHost \*:$puerto>/g" /etc/apache2/sites-available/000-default.conf
-            echo "<h1>[✓] Orquestador: $servicio activo en puerto $puerto</h1>" > /var/www/html/index.html
+            sed -i "s/Listen 80/Listen $pto/g" /etc/apache2/ports.conf
+            sed -i "s/<VirtualHost \*:80>/<VirtualHost \*:$pto>/g" /etc/apache2/sites-available/000-default.conf
+            
+            # Limpiamos basura vieja y creamos el nuevo dinámico con UTF-8
+            rm -f /var/www/html/index*
+            echo "<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body><h1>[✓] UAS-FIM: $serv activo en puerto $pto</h1></body></html>" > /var/www/html/index.html
+            
             systemctl restart apache2
             ;;
         "Nginx")
-            sed -i "s/listen 80/listen $puerto/g" /etc/nginx/sites-enabled/default
-            echo "<h1>[✓] Orquestador: $servicio activo en puerto $puerto</h1>" > /var/www/html/index.nginx-debian.html
+            sed -i "s/listen 80/listen $pto/g" /etc/nginx/sites-enabled/default
+            
+            # Limpiamos basura vieja y creamos el nuevo dinámico con UTF-8
+            rm -f /var/www/html/index*
+            echo "<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body><h1>[✓] UAS-FIM: $serv activo en puerto $pto</h1></body></html>" > /var/www/html/index.html
+            
             systemctl restart nginx
             ;;
-        "vsftpd")
-            grep -q "listen_port" /etc/vsftpd.conf || echo "listen_port=21" >> /etc/vsftpd.conf
-            sed -i "s/listen_port=.*/listen_port=$puerto/g" /etc/vsftpd.conf
-            systemctl restart vsftpd
-            ;;
         "Tomcat")
-            sed -i "s/port=\"8080\"/port=\"$puerto\"/g" /etc/tomcat9/server.xml
+            sed -i "s/port=\"8080\"/port=\"$pto\"/g" /etc/tomcat9/server.xml
             mkdir -p /var/lib/tomcat9/webapps/ROOT
-            echo "<h1>[✓] Orquestador: $servicio activo en puerto $puerto</h1>" > /var/lib/tomcat9/webapps/ROOT/index.html
+            
+            # Limpiamos basura vieja en Tomcat
+            rm -f /var/lib/tomcat9/webapps/ROOT/index*
+            echo "<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body><h1>[✓] UAS-FIM: $serv activo en puerto $pto</h1></body></html>" > /var/lib/tomcat9/webapps/ROOT/index.html
+            
             systemctl restart tomcat9
+            ;;
+        "vsftpd")
+            grep -q "listen_port" /etc/vsftpd.conf || echo "listen_port=$pto" >> /etc/vsftpd.conf
+            sed -i "s/listen_port=.*/listen_port=$pto/g" /etc/vsftpd.conf
+            systemctl restart vsftpd
             ;;
     esac
     echo -e "${VERDE}[✓] Configuración base lista.${RESET}"
@@ -216,7 +229,10 @@ realizar_resumen_instalacion() {
     echo -e "${AZUL}=========================================${RESET}"
     echo -e "Servicio: $serv"
     echo -ne "Estado del proceso: "
-    pgrep -x "${serv,,}" >/dev/null && echo -e "${VERDE}EJECUTÁNDOSE${RESET}" || echo -e "${ROJO}ERROR${RESET}"
+    pgrep -x "${serv,,}" >/dev/null && echo -e "Estado: ${VERDE}OK${RESET}"
+
+    local p_name="${serv,,}"; [[ "$serv" == "Apache" ]] && p_name="apache2"; [[ "$serv" == "Tomcat" ]] && p_name="java"
+    pgrep -x "$p_name" >/dev/null && echo -e "Estado: ${VERDE}OK${RESET}" || echo -e "Estado: ${ROJO}FAIL${RESET}"
     echo -ne "Puerto HTTP activo ($pto): "
     ss -tuln | grep -q ":$pto " && echo -e "${VERDE}OK${RESET}" || echo -e "${ROJO}CERRADO${RESET}"
     echo -ne "Cifrado SSL/TLS (Puerto $PUERTO_SSL_ACTIVO): "
