@@ -1,5 +1,3 @@
-
-
 #!/bin/bash
 
 # ==========================================
@@ -13,7 +11,16 @@ CYAN='\033[0;36m'
 RESET='\033[0m'
 
 # ==========================================
-# 2. IMPORTAR LÓGICA DE TODAS LAS TAREAS
+# 2. VARIABLES GLOBALES (Para Tarea 7)
+# ==========================================
+# Cambia estos datos por los de tu Adaptador 3 y tu usuario FTP
+export FTP_SERVER="192.168.56.104" 
+export FTP_USER="kami" 
+export FTP_PASS="Sistemas.2026!"
+export DIR_DESCARGAS="/tmp/descargas_practica7"
+
+# ==========================================
+# 3. IMPORTAR LÓGICA DE TODAS LAS TAREAS
 # ==========================================
 source ./tarea1_diag.sh
 source ./tarea2_dhcp.sh
@@ -21,17 +28,21 @@ source ./tarea3_dns.sh
 source ./tarea4_ssh.sh
 source ./tarea5_ftp.sh
 source ./tarea6_http.sh
+source ./tarea7_ssl.sh  
 
 # ==========================================
-# 3. VERIFICACIÓN DE PERMISOS ROOT
+# 4. VERIFICACIÓN DE PERMISOS ROOT
 # ==========================================
 if [[ $EUID -ne 0 ]]; then
    echo -e "${ROJO}[!] Ejecutar como root (sudo).${RESET}"
    exit 1
 fi
 
+mkdir -p "$DIR_DESCARGAS"
+verificar_dependencias # Función dentro de tarea7 para asegurar curl/openssl
+
 # ==========================================
-# 4. SUBMENÚS POR TAREA
+# 5. SUBMENÚS POR TAREA 
 # ==========================================
 
 submenu_tarea1() {
@@ -224,8 +235,66 @@ submenu_http() {
     done
 }
 
+# --- SUBMENÚ PARA INSTALACIÓN HÍBRIDA (TAREA 7) ---
+submenu_orquestador() {
+    while true; do
+        clear
+        echo -e "\n${AZUL}=========================================${RESET}"
+        echo -e "${AZUL}    TAREA 7: ORQUESTADOR HÍBRIDO         ${RESET}"
+        echo -e "${AZUL}=========================================${RESET}"
+        echo "1. Instalación Segura (Repo Web/Privado)"
+        echo "2. Verificar Integridad SHA256 manual"        
+	echo "3. Volver al Menú Principal"
+        echo -e "${AZUL}-----------------------------------------${RESET}"
+
+        read -p "Selecciona una opción [1-3]: " OPCION
+	case $OPCION in
+            1) 
+                echo -e "\n${CYAN}Servicios Disponibles:${RESET}"
+                echo "1) vsftpd  2) Apache  3) Nginx  4) Tomcat"
+                read -p "Elige servicio: " sel_serv
+                case $sel_serv in
+                    1) serv="vsftpd" ;; 2) serv="Apache" ;; 
+                    3) serv="Nginx" ;;  4) serv="Tomcat" ;;
+                esac
+
+                echo -e "\n${CYAN}Origen de instalación:${RESET}"
+                echo "1) Web (apt-get)  2) Privado (FTP)"
+                read -p "Elige origen: " orig
+
+                read -p "Puerto HTTP a asignar: " pto
+                if validar_puerto_ingresado "$pto"; then
+                    if [ "$orig" == "2" ]; then
+                        if navegar_y_descargar_ftp "$serv"; then
+                            echo -e "${VERDE}Listo para instalar $serv desde $PAQUETE_DESCARGADO${RESET}"
+                            # -----> AQUÍ INVOCAMOS LAS 3 FUNCIONES PARA FTP <-----
+                            instalar_y_configurar_servicio "$serv" "ftp" "$pto" "$PAQUETE_DESCARGADO"
+                            aplicar_ssl_servicio "$serv" "$pto"
+                            realizar_resumen_instalacion "$serv" "$pto"
+                        fi
+                    else
+                        echo -e "${AMARILLO}Iniciando instalación Web de $serv...${RESET}"
+                        # -----> AQUÍ INVOCAMOS LAS 3 FUNCIONES PARA WEB <-----
+                        instalar_y_configurar_servicio "$serv" "web" "$pto" ""
+                        aplicar_ssl_servicio "$serv" "$pto"
+                        realizar_resumen_instalacion "$serv" "$pto"
+                    fi
+                fi
+                ;;
+            2) echo "Función de verificación manual en construcción..." ;;
+            3) break ;;
+            *) echo -e "${ROJO}[!] Opción no válida.${RESET}" ;;
+        esac
+
+        if [[ "$OPCION" != "3" ]]; then
+            echo -e "\n${AMARILLO}---------------------------------------${RESET}"
+            read -p "Presiona Enter para continuar..." dummy
+        fi
+    done
+}
+
 # ==========================================
-# 5. MENÚ PRINCIPAL ORQUESTADOR
+# 6. MENÚ PRINCIPAL ORQUESTADOR
 # ==========================================
 while true; do
     clear
@@ -238,10 +307,11 @@ while true; do
     echo "4. Módulo Servidor SSH (Tarea 4)"
     echo "5. Módulo Servidor FTP (Tarea 5)"
     echo "6. Módulo Servidor HTTP (Tarea 6)" 
-    echo "7. Salir completamente"            
+    echo "7. Módulo Orquestador Híbrido SSL (Tarea 7)" 
+    echo "8. Salir completamente"                
     echo -e "${VERDE}----------------------------------------------------${RESET}"
 
-    read -p "Selecciona un módulo [1-6]: " OPCION_MAIN
+    read -p "Selecciona un módulo [1-8]: " OPCION_MAIN
 
     case $OPCION_MAIN in
         1) submenu_tarea1 ;;
@@ -249,8 +319,9 @@ while true; do
         3) submenu_dns ;;
         4) submenu_ssh ;;
         5) submenu_ftp ;;
-	6) submenu_http ;; 
-        7) echo -e "${VERDE}Saliendo del administrador...${RESET}"; exit 0 ;;
-        *) echo -e "${ROJO}[ERROR] Opción no válida. Elige del 1 al 7.${RESET}"; sleep 2 ;;
+        6) submenu_http ;; 
+        7) submenu_orquestador ;; 
+        8) echo -e "${VERDE}Saliendo del administrador...${RESET}"; exit 0 ;;
+        *) echo -e "${ROJO}[ERROR] Opción no válida. Elige del 1 al 8.${RESET}"; sleep 2 ;;
     esac
 done
