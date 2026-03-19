@@ -30,32 +30,36 @@ validar_puerto_ingresado() {
     return 0
 }
 
-# --- 2. NAVEGACIÓN Y DESCARGA (BLINDADA PARA FTP/FTPS DINÁMICO) ---
+# --- 2. NAVEGACIÓN Y DESCARGA (CON VARIABLES GLOBALES) ---
 navegar_y_descargar_ftp() {
     local servicio=$1
     
-    # 1. ¡LA MAGIA! El script busca en qué puerto está viviendo el FTP actualmente
+    # Aseguramos que la carpeta de descargas exista
+    mkdir -p "$DIR_DESCARGAS"
+
+    # 1. El script busca en qué puerto está viviendo el FTP actualmente
     local puerto_ftp_actual=$(grep "^listen_port=" /etc/vsftpd.conf 2>/dev/null | cut -d'=' -f2)
-    # Si no encuentra nada, asume el 21 por defecto (para la primera vez)
     puerto_ftp_actual=${puerto_ftp_actual:-21} 
 
-    # 2. Armamos la URL con el puerto detectado dinámicamente
+    # 2. Armamos la URL usando tus variables globales
     local url_servicio="ftp://$FTP_SERVER:$puerto_ftp_actual/general/http/Linux/$servicio/"
     echo -e "${CYAN}[*] Explorando $servicio (Puerto FTP detectado: $puerto_ftp_actual)...${RESET}"
 
-    # Usamos --ssl-reqd para que curl se adapte si el FTP ya está cifrado
-    mapfile -t archivos_versiones < <(curl -s -l -k --ssl-reqd -u "$FTP_USER:$FTP_PASS" "$url_servicio" | grep -v '\.sha256$')
+    # Quitamos --ssl-reqd y usamos --ssl para que no truene si el FTP no tiene candado aún
+    mapfile -t archivos_versiones < <(curl -s -l -k --ssl -u "$FTP_USER:$FTP_PASS" "$url_servicio" | grep -v '\.sha256$')
     
     if [ ${#archivos_versiones[@]} -eq 0 ]; then
-        echo -e "${ROJO}[!] No se encontraron instaladores para $servicio en el FTP.${RESET}"
+        echo -e "${ROJO}[!] No se encontraron instaladores para $servicio.${RESET}"
+        # Línea de debug por si la ruta está mal
+        echo -e "${AMARILLO}[DEBUG] Para ver el error real, ejecuta en consola: curl -v -k --ssl -u \"$FTP_USER:$FTP_PASS\" \"$url_servicio\"${RESET}"
         return 1
     fi
 
     local archivo_elegido=$(echo "${archivos_versiones[0]}" | tr -d '\r')
     echo -e "${AMARILLO}[*] Descargando $archivo_elegido...${RESET}"
     
-    curl -s -k --ssl-reqd -u "$FTP_USER:$FTP_PASS" "$url_servicio$archivo_elegido" -o "$DIR_DESCARGAS/$archivo_elegido"
-    curl -s -k --ssl-reqd -u "$FTP_USER:$FTP_PASS" "$url_servicio$archivo_elegido.sha256" -o "$DIR_DESCARGAS/$archivo_elegido.sha256"
+    curl -s -k --ssl -u "$FTP_USER:$FTP_PASS" "$url_servicio$archivo_elegido" -o "$DIR_DESCARGAS/$archivo_elegido"
+    curl -s -k --ssl -u "$FTP_USER:$FTP_PASS" "$url_servicio$archivo_elegido.sha256" -o "$DIR_DESCARGAS/$archivo_elegido.sha256"
 
     cd "$DIR_DESCARGAS" || return 1
     if sha256sum -c "$archivo_elegido.sha256" > /dev/null 2>&1; then

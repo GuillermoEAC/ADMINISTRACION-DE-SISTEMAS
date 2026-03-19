@@ -13,7 +13,6 @@ RESET='\033[0m'
 # ==========================================
 # 2. VARIABLES GLOBALES (Para Tarea 7)
 # ==========================================
-# Cambia estos datos por los de tu Adaptador 3 y tu usuario FTP
 export FTP_SERVER="192.168.56.104" 
 export FTP_USER="kami" 
 export FTP_PASS="Sistemas.2026!"
