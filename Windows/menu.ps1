@@ -7,6 +7,8 @@
 . .\tarea4_ssh.ps1
 . .\tarea5_ftp.ps1
 . .\tarea6_http.ps1
+. .\tarea7_ssl.ps1
+. .\tarea8_ad.ps1
 
 # ==========================================
 # 2. VERIFICACIÓN DE PERMISOS DE ADMINISTRADOR
@@ -218,6 +220,64 @@ function Invoke-SubmenuHTTP {
     } while ($true)
 }
 
+function Invoke-SubmenuHibrido {
+    do {
+        Clear-Host
+        Write-Host "====================================================" -ForegroundColor Magenta
+        Write-Host "  TAREA 7: INFRAESTRUCTURA DE DESPLIEGUE SEGURO     " -ForegroundColor Magenta
+        Write-Host "====================================================" -ForegroundColor Magenta
+        Write-Host "1. Instalar IIS Web (SSL Dinámico)"
+        Write-Host "2. Instalar IIS FTP (SSL Dinámico)"
+        Write-Host "3. Instalar Apache (Descarga FTP/Web + SSL Dinámico)"
+        Write-Host "4. Instalar Nginx (Descarga FTP/Web + SSL Dinámico)"
+        Write-Host "5. Volver al Menú Principal"
+        Write-Host "----------------------------------------------------" -ForegroundColor Magenta
+        
+        $opc = Read-Host "Selecciona una opción [1-5]"
+
+        switch ($opc) {
+            "1" { Instalar-IIS-Web-Seguro }
+            "2" { Instalar-IIS-FTP-Seguro } # Adaptada similar a IIS Web
+            "3" { Instalar-Apache-Seguro }
+            "4" { Instalar-Nginx-Seguro }
+            "5" { return }
+        }
+        if ($opc -ne "5") { Read-Host "`nPresiona Enter para continuar..." }
+    } while ($true)
+}
+
+function Invoke-SubmenuTarea8 {
+    do {
+        Clear-Host
+        Write-Host "====================================================" -ForegroundColor Cyan
+        Write-Host "  TAREA 8: GOBERNANZA, CUOTAS Y CONTROL (AD/FSRM)   " -ForegroundColor Cyan
+        Write-Host "====================================================" -ForegroundColor Cyan
+        Write-Host "1. Crear Estructura, Usuarios y Horarios (CSV)"
+        Write-Host "2. Configurar Cuotas y Filtros (FSRM)"
+        Write-Host "3. Configurar AppLocker (Hash) y GPO de Cierre"
+        Write-Host "4. Ejecutar TODA la Práctica 08 Automáticamente"
+        Write-Host "5. Volver al Menú Principal"
+        Write-Host "----------------------------------------------------" -ForegroundColor Cyan
+        
+        $Op = Read-Host "Seleccione una opción [1-5]"
+        
+        switch ($Op) {
+            "1" { Crear-UsuariosGobernanza }
+            "2" { Configurar-FSRM }
+            "3" { Configurar-AppLockerGPO }
+            "4" { Ejecutar-Tarea8Completa }
+            "5" { return }
+            Default { Write-Host "Opción inválida." -ForegroundColor Red; Start-Sleep 1 }
+        }
+        
+        if ($Op -ne "5") {
+            Write-Host "`n---------------------------------------" -ForegroundColor Yellow
+            Read-Host "Presiona Enter para continuar..."
+        }
+    } while ($true)
+}
+
+
 # ==========================================
 # 4. MENÚ PRINCIPAL ORQUESTADOR
 # ==========================================
@@ -232,10 +292,12 @@ do {
     Write-Host "4. Módulo Servidor SSH (Tarea 4)"
     Write-Host "5. Módulo Servidor FTP (Tarea 5)"
     Write-Host "6. Módulo Servidor HTTP (Tarea 6)"
-    Write-Host "7. Salir completamente"
+    Write-Host "7. Módulo de Servidor SSL (Tarea 7)"
+    Write-Host "8. Módulo de Gobernanza y Cuotas (Tarea 8)"
+    Write-Host "9. Salir completamente"
     Write-Host "----------------------------------------------------" -ForegroundColor Green
     
-    $opcion = Read-Host "Selecciona un módulo [1-7]"
+    $opcion = Read-Host "Selecciona un módulo [1-9]"
 
     switch ($opcion) {
         "1" { Invoke-SubmenuTarea1 }
@@ -244,13 +306,19 @@ do {
         "4" { Invoke-SubmenuSSH }
         "5" { Invoke-SubmenuFTP }
         "6" { Invoke-SubmenuHTTP }
-        "7" { 
+        "7" { Invoke-SubmenuHibrido }
+        "8" { Invoke-SubmenuTarea8 }
+        "9" { 
             Write-Host "Saliendo del administrador..." -ForegroundColor Green
             exit 
         }
         Default { 
-            Write-Host "[ERROR] Opción no válida. Elige del 1 al 7." -ForegroundColor Red
+            Write-Host "[ERROR] Opción no válida. Elige del 1 al 9." -ForegroundColor Red
             Start-Sleep -Seconds 2 
         }
-    }
+     }
+
 } while ($true)
+
+
+
