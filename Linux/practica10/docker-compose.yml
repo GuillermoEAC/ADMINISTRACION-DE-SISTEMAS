@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./web                     # Le dice que use tu Dockerfile de la carpeta web
+    container_name: servidor_web
+    ports:
+      - "80:8080"                    # Tu Debian escucha en el 80, el contenedor en el 8080 seguro
+    volumes:
+      - web_content:/var/www/localhost/htdocs/ # (Test 10.3) Comparte esta carpeta con el FTP
+    networks:
+      - infra_red
+    deploy:
+      resources:
+        limits:
+          memory: 512M               # (Test 10.4) Límite de RAM exigido
+          cpus: '0.50'
+
+  db:
+    image: postgres:15-alpine        # Imagen ligera de PostgreSQL
+    container_name: servidor_bd
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: practica10_db
+    volumes:
+      - db_data:/var/lib/postgresql/data # (Test 10.1) Aquí se guardan los datos de forma persistente
+    networks:
+      - infra_red
+    deploy:
+      resources:
+        limits:
+          memory: 512M               # (Test 10.4) Límite de RAM
+          cpus: '0.50'
+
+  ftp:
+    image: delfer/alpine-ftp-server  # Servidor FTP ligero basado en Alpine
+    container_name: servidor_ftp
+    environment:
+      USERS: "kami|Sistemas.2026!"   # Tus credenciales: usuario|contraseña
+    ports:
+      - "21:21"
+      - "21000-21010:21000-21010"    # Puertos pasivos para la transferencia de archivos
+    volumes:
+      - web_content:/ftp/kami        # (Test 10.3) Lo que suba 'kami', aparece en el servidor Web
+    networks:
+      - infra_red
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.25'
+
+networks:
+  infra_red:
+    external: true                   # Le avisa a Docker que esta red ya la creaste tú a mano
+
+volumes:
+  db_data:
+    external: true                   # Le avisa que el volumen de la BD ya existe
+  web_content:
+    external: true                   # Le avisa que el volumen Web/FTP ya existe

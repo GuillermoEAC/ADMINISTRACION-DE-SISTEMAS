@@ -38,7 +38,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 mkdir -p "$DIR_DESCARGAS"
-verificar_dependencias # Función dentro de tarea7 para asegurar curl/openssl
+# verificar_dependencias # Función dentro de tarea7 para asegurar curl/openssl
 
 # ==========================================
 # 5. SUBMENÚS POR TAREA 
@@ -48,7 +48,6 @@ submenu_tarea1() {
     while true; do
         clear
         echo -e "\n${AZUL}=========================================${RESET}"
-  GNU nano 7.2                                                               menu.sh *
         echo -e "${AZUL}      TAREA 1: DIAGNÓSTICO Y RED         ${RESET}"
         echo -e "${AZUL}=========================================${RESET}"
         echo "1. Ejecutar Diagnóstico de Sistema"
@@ -166,7 +165,6 @@ submenu_ssh() {
     done
 }
 
-# --- SUBMENÚ PARA FTP (TAREA 5) ---
 submenu_ftp() {
     while true; do
         clear
@@ -184,7 +182,7 @@ submenu_ftp() {
         read -p "Seleccione una opción [1-6]: " OPCION
         case $OPCION in
             1) configuracion_inicial_ftp ;;
-            2) verificar_instalacion_ftp ;;  # <-- NUEVA OPCIÓN
+            2) verificar_instalacion_ftp ;;
             3) gestion_alta_usuarios ;;
             4) cambiar_grupo_ftp ;;
             5) eliminar_usuario_ftp ;;
@@ -200,9 +198,6 @@ submenu_ftp() {
     done
 }
 
-# ==========================================
-# SUBMENÚ PARA HTTP (TAREA 6)
-# ==========================================
 submenu_http() {
     while true; do
         clear
@@ -234,7 +229,6 @@ submenu_http() {
     done
 }
 
-# --- SUBMENÚ PARA INSTALACIÓN HÍBRIDA (TAREA 7) ---
 submenu_orquestador() {
     while true; do
         clear
@@ -243,11 +237,11 @@ submenu_orquestador() {
         echo -e "${AZUL}=========================================${RESET}"
         echo "1. Instalación Segura (Repo Web/Privado)"
         echo "2. Verificar Integridad SHA256 manual"        
-	echo "3. Volver al Menú Principal"
+        echo "3. Volver al Menú Principal"
         echo -e "${AZUL}-----------------------------------------${RESET}"
 
         read -p "Selecciona una opción [1-3]: " OPCION
-	case $OPCION in
+        case $OPCION in
             1) 
                 echo -e "\n${CYAN}Servicios Disponibles:${RESET}"
                 echo "1) vsftpd  2) Apache  3) Nginx  4) Tomcat"
@@ -266,14 +260,12 @@ submenu_orquestador() {
                     if [ "$orig" == "2" ]; then
                         if navegar_y_descargar_ftp "$serv"; then
                             echo -e "${VERDE}Listo para instalar $serv desde $PAQUETE_DESCARGADO${RESET}"
-                            # -----> AQUÍ INVOCAMOS LAS 3 FUNCIONES PARA FTP <-----
                             instalar_y_configurar_servicio "$serv" "ftp" "$pto" "$PAQUETE_DESCARGADO"
                             aplicar_ssl_servicio "$serv" "$pto"
                             realizar_resumen_instalacion "$serv" "$pto"
                         fi
                     else
                         echo -e "${AMARILLO}Iniciando instalación Web de $serv...${RESET}"
-                        # -----> AQUÍ INVOCAMOS LAS 3 FUNCIONES PARA WEB <-----
                         instalar_y_configurar_servicio "$serv" "web" "$pto" ""
                         aplicar_ssl_servicio "$serv" "$pto"
                         realizar_resumen_instalacion "$serv" "$pto"
@@ -287,6 +279,55 @@ submenu_orquestador() {
 
         if [[ "$OPCION" != "3" ]]; then
             echo -e "\n${AMARILLO}---------------------------------------${RESET}"
+            read -p "Presiona Enter para continuar..." dummy
+        fi
+    done
+}
+
+# --- NUEVO SUBMENÚ PARA CONTENEDORES (TAREA 10) ---
+submenu_tarea10() {
+    while true; do
+        clear
+        echo -e "\n${AZUL}=========================================${RESET}"
+        echo -e "${AZUL}   TAREA 10: CONTENEDORES Y SEGURIDAD    ${RESET}"
+        echo -e "${AZUL}=========================================${RESET}"
+        echo -e "1. Desplegar Infraestructura (Silencioso)"
+        echo -e "2. Verificar Límites de Recursos (Test 10.4)"
+        echo -e "3. Detener y Limpiar Contenedores"
+        echo -e "4. Volver al Menú Principal"
+        echo -e "${AZUL}-----------------------------------------${RESET}"
+
+        read -p "Seleccione una opción [1-4]: " OPCION
+        case $OPCION in
+            1)
+                echo -e "\n${AMARILLO}[*] Configurando redes, volúmenes y contenedores...${RESET}"
+                # Navegamos a la carpeta de la práctica donde estará el archivo maestro
+                cd /mnt/practicas/practica10 || { echo -e "${ROJO}[!] Carpeta no encontrada.${RESET}"; break; }
+                
+                # Ejecutamos docker de forma desatendida (-d) reconstruyendo las imágenes (--build)
+                docker compose up -d --build
+                
+                echo -e "\n${VERDE}[✓] ¡Despliegue desatendido completado!${RESET}"
+                echo -e "${CYAN}[i] Apache, PostgreSQL y FTP están en línea.${RESET}"
+                ;;
+            2)
+                echo -e "\n${CYAN}[i] Mostrando consumo en tiempo real...${RESET}"
+                echo -e "${AMARILLO}(Toma captura de esto para tu Prueba 10.4)${RESET}"
+                # Usamos --no-stream para que imprima una vez y regrese al menú, ideal para la captura
+                docker stats --no-stream
+                ;;
+            3)
+                echo -e "\n${ROJO}[*] Deteniendo infraestructura...${RESET}"
+                cd /mnt/practicas/practica10 && docker compose down
+                echo -e "${VERDE}[✓] Contenedores apagados y removidos limpiamente.${RESET}"
+                ;;
+            4) break ;;
+            *) echo -e "${ROJO}[!] Opción no válida.${RESET}" ;;
+        esac
+
+        if [[ "$OPCION" != "4" ]]; then
+            echo ""
+            echo -e "${AMARILLO}---------------------------------------${RESET}"
             read -p "Presiona Enter para continuar..." dummy
         fi
     done
@@ -307,10 +348,11 @@ while true; do
     echo "5. Módulo Servidor FTP (Tarea 5)"
     echo "6. Módulo Servidor HTTP (Tarea 6)" 
     echo "7. Módulo Orquestador Híbrido SSL (Tarea 7)" 
-    echo "8. Salir completamente"                
+    echo -e "${CYAN}8. Módulo Práctica 10: Contenedores Docker${RESET}" 
+    echo "9. Salir completamente"                
     echo -e "${VERDE}----------------------------------------------------${RESET}"
 
-    read -p "Selecciona un módulo [1-8]: " OPCION_MAIN
+    read -p "Selecciona un módulo [1-9]: " OPCION_MAIN
 
     case $OPCION_MAIN in
         1) submenu_tarea1 ;;
@@ -320,7 +362,8 @@ while true; do
         5) submenu_ftp ;;
         6) submenu_http ;; 
         7) submenu_orquestador ;; 
-        8) echo -e "${VERDE}Saliendo del administrador...${RESET}"; exit 0 ;;
-        *) echo -e "${ROJO}[ERROR] Opción no válida. Elige del 1 al 8.${RESET}"; sleep 2 ;;
+        8) submenu_tarea10 ;; 
+        9) echo -e "${VERDE}Saliendo del administrador...${RESET}"; exit 0 ;;
+        *) echo -e "${ROJO}[ERROR] Opción no válida. Elige del 1 al 9.${RESET}"; sleep 2 ;;
     esac
 done
