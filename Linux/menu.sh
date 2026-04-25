@@ -312,7 +312,6 @@ submenu_tarea10() {
                 ;;
             2)
                 echo -e "\n${CYAN}[i] Mostrando consumo en tiempo real...${RESET}"
-                echo -e "${AMARILLO}(Toma captura de esto para tu Prueba 10.4)${RESET}"
                 # Usamos --no-stream para que imprima una vez y regrese al menú, ideal para la captura
                 docker stats --no-stream
                 ;;
