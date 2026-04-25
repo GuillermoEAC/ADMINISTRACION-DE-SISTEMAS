@@ -348,8 +348,8 @@ while true; do
     echo "5. Módulo Servidor FTP (Tarea 5)"
     echo "6. Módulo Servidor HTTP (Tarea 6)" 
     echo "7. Módulo Orquestador Híbrido SSL (Tarea 7)" 
-    echo -e "${CYAN}8. Módulo Práctica 10: Contenedores Docker${RESET}" 
-    echo "9. Salir completamente"                
+    echo "8. Módulo Práctica 10: Contenedores Docker" 
+    echo -e "${CYAN}9. Salir completamente${RESET}"                
     echo -e "${VERDE}----------------------------------------------------${RESET}"
 
     read -p "Selecciona un módulo [1-9]: " OPCION_MAIN
