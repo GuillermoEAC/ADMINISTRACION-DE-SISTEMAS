@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   mailserver:
     image: ghcr.io/docker-mailserver/docker-mailserver:latest
@@ -44,13 +42,12 @@ services:
     networks:
       - red_datos_interna
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root --password=$$MYSQL_ROOT_PASSWORD || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
 
   roundcubemail:
-
     image: roundcube/roundcubemail:latest
     container_name: roundcubemail
     restart: always
@@ -58,7 +55,7 @@ services:
       roundcube-db:
         condition: service_healthy
     ports:
-      - "80:80" 
+      - "8081:80" 
     environment:
       - ROUNDCUBEMAIL_DB_TYPE=mysql
       - ROUNDCUBEMAIL_DB_HOST=roundcube-db
@@ -78,4 +75,7 @@ networks:
     driver: bridge
   red_datos_interna:
     driver: bridge
-    internal: true # Aisla la BD del exterior (como en la Práctica 11)
+    internal: true 
+
+volumes:
+  roundcube_db_data:
