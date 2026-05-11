@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  mailserver:
+    image: ghcr.io/docker-mailserver/docker-mailserver:latest
+    container_name: mailserver
+    hostname: ${HOSTNAME}
+    domainname: ${DOMAIN}
+    ports:
+      - "25:25"    # SMTP
+      - "143:143"  # IMAP
+      - "587:587"  # SMTP seguro
+      - "993:993"  # IMAP seguro
+    volumes:
+      - ./datos_compartidos/mail-data:/var/mail
+      - ./datos_compartidos/mail-state:/var/mail-state
+      - ./datos_compartidos/logs:/var/log/mail
+      - ./datos_compartidos/config:/tmp/docker-mailserver
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - ENABLE_SPAMASSASSIN=1
+      - ENABLE_FAIL2BAN=1
+      - ENABLE_POSTGREY=0
+      - ENABLE_SASLAUTHD=0
+      - ONE_DIR=1
+      - TLS_LEVEL=modern
+    cap_add:
+      - NET_ADMIN # Vital para que Fail2ban bloquee IPs en la Prueba 12.3
+    restart: always
+    networks:
+      - red_correo
+
+  roundcube-db:
+    image: mariadb:10.5
+    container_name: roundcube-db
+    restart: always
+    volumes:
+      - roundcube_db_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=roundcubemail
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    networks:
+      - red_datos_interna
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  roundcubemail:
+
+    image: roundcube/roundcubemail:latest
+    container_name: roundcubemail
+    restart: always
+    depends_on:
+      roundcube-db:
+        condition: service_healthy
+    ports:
+      - "80:80" 
+    environment:
+      - ROUNDCUBEMAIL_DB_TYPE=mysql
+      - ROUNDCUBEMAIL_DB_HOST=roundcube-db
+      - ROUNDCUBEMAIL_DB_NAME=roundcubemail
+      - ROUNDCUBEMAIL_DB_USER=${DB_USER}
+      - ROUNDCUBEMAIL_DB_PASSWORD=${DB_PASSWORD}
+      - ROUNDCUBEMAIL_DEFAULT_HOST=tls://mailserver
+      - ROUNDCUBEMAIL_SMTP_SERVER=tls://mailserver
+    volumes:
+      - ./datos_compartidos/web-html:/var/www/html
+    networks:
+      - red_correo
+      - red_datos_interna
+
+networks:
+  red_correo:
+    driver: bridge
+  red_datos_interna:
+    driver: bridge
+    internal: true # Aisla la BD del exterior (como en la Práctica 11)
