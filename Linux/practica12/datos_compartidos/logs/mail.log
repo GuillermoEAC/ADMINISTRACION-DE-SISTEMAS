@@ -25797,3 +25797,293 @@
 2026-05-11T18:04:33.100137-07:00 mail amavis[808]: No decoder for       .doc 
 2026-05-11T18:04:33.100158-07:00 mail amavis[808]: No decoder for       .zoo 
 2026-05-11T18:04:33.100279-07:00 mail amavis[808]: No decoder for       .zst 
+2026-05-11T18:07:09.604250-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.21.0.3, lip=172.21.0.2, mpid=1106, session=<NxyFe5RRdIGsFQAD>
+2026-05-11T18:07:09.619478-07:00 mail dovecot: imap(director@reprobados.com)<1106><NxyFe5RRdIGsFQAD>: Disconnected: Logged out in=82 out=779 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:07:09.659295-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.21.0.3, lip=172.21.0.2, mpid=1108, session=<8O6Fe5RRfIGsFQAD>
+2026-05-11T18:07:09.686842-07:00 mail dovecot: imap(director@reprobados.com)<1108><8O6Fe5RRfIGsFQAD>: Disconnected: Logged out in=70 out=709 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:07:09.924898-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.21.0.3, lip=172.21.0.2, mpid=1111, session=<DLuJe5RRgIGsFQAD>
+2026-05-11T18:07:09.951149-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.21.0.3, lip=172.21.0.2, mpid=1113, session=<wBmKe5RRjoGsFQAD>
+2026-05-11T18:07:09.981496-07:00 mail dovecot: imap(director@reprobados.com)<1111><DLuJe5RRgIGsFQAD>: Disconnected: Logged out in=76 out=638 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:07:10.123633-07:00 mail dovecot: imap(director@reprobados.com)<1113><wBmKe5RRjoGsFQAD>: Disconnected: Logged out in=233 out=1142 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:07:12.666511-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.21.0.3, lip=172.21.0.2, mpid=1120, session=<0tGze5RR/KmsFQAD>
+2026-05-11T18:07:12.676537-07:00 mail dovecot: imap(director@reprobados.com)<1120><0tGze5RR/KmsFQAD>: Disconnected: Logged out in=32 out=566 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:07:12.715939-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.21.0.3, lip=172.21.0.2, mpid=1122, session=<C5u0e5RRAqqsFQAD>
+2026-05-11T18:07:12.741327-07:00 mail dovecot: imap(director@reprobados.com)<1122><C5u0e5RRAqqsFQAD>: Disconnected: Logged out in=44 out=668 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:07:31.197789-07:00 mail postfix/postscreen[1150]: cache btree:/var/lib/postfix/postscreen_cache full cleanup: retained=0 dropped=0 entries
+2026-05-11T18:07:31.199750-07:00 mail postfix/postscreen[1150]: CONNECT from [172.21.0.3]:51904 to [172.21.0.2]:25
+2026-05-11T18:07:31.199812-07:00 mail postfix/postscreen[1150]: ALLOWLISTED [172.21.0.3]:51904
+2026-05-11T18:07:31.225932-07:00 mail postfix/smtpd[1151]: connect from roundcubemail.practica12_red_correo[172.21.0.3]
+2026-05-11T18:07:31.229969-07:00 mail opendmarc[709]: ignoring connection from roundcubemail.practica12_red_correo
+2026-05-11T18:07:31.232270-07:00 mail postfix/smtpd[1151]: disconnect from roundcubemail.practica12_red_correo[172.21.0.3] ehlo=1 quit=1 commands=2
+2026-05-11T18:12:24.701405-07:00 mail dovecot: master: Dovecot v2.3.19.1 (9b53102964) starting up for imap, lmtp
+2026-05-11T18:12:25.084477-07:00 mail opendkim[685]: OpenDKIM Filter v2.11.0 starting (args: -f)
+2026-05-11T18:12:25.293350-07:00 mail opendmarc[694]: OpenDMARC Filter v1.4.2 starting (args: -f -p inet:8893@localhost -P /var/run/opendmarc/opendmarc.pid)
+2026-05-11T18:12:25.293534-07:00 mail opendmarc[694]: additional trusted authentication services: mail.reprobados.com
+2026-05-11T18:12:27.127483-07:00 mail postfix/postfix-script[842]: starting the Postfix mail system
+2026-05-11T18:12:27.142259-07:00 mail postfix/master[844]: daemon started -- version 3.7.11, configuration /etc/postfix
+2026-05-11T18:12:27.185364-07:00 mail amavis[751]: starting. /usr/sbin/amavisd at mail.reprobados.com amavis-2.13.0 (20230106), Unicode aware, LC_CTYPE="C.UTF-8"
+2026-05-11T18:12:27.197776-07:00 mail amavis[751]: perl=5.036000, user=, EUID: 999 (999);  group=(), EGID: 999 999 (999 999)
+2026-05-11T18:12:27.384418-07:00 mail amavis[751]: Net::Server: Group Not Defined.  Defaulting to EGID '999 999'
+2026-05-11T18:12:27.384621-07:00 mail amavis[751]: Net::Server: User Not Defined.  Defaulting to EUID '999'
+2026-05-11T18:12:27.393761-07:00 mail amavis[751]: No ext program for   .zoo, tried: zoo
+2026-05-11T18:12:27.394044-07:00 mail amavis[751]: No ext program for   .doc, tried: ripole
+2026-05-11T18:12:27.394913-07:00 mail amavis[751]: No ext program for   .zst, tried: unzstd
+2026-05-11T18:12:27.395214-07:00 mail amavis[751]: No decoder for       .F   
+2026-05-11T18:12:27.395459-07:00 mail amavis[751]: No decoder for       .doc 
+2026-05-11T18:12:27.395709-07:00 mail amavis[751]: No decoder for       .zoo 
+2026-05-11T18:12:27.395958-07:00 mail amavis[751]: No decoder for       .zst 
+2026-05-11T18:13:49.313924-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=951, session=<oi9Yk5RR7oOsFgAD>
+2026-05-11T18:13:49.330971-07:00 mail dovecot: imap(director@reprobados.com)<951><oi9Yk5RR7oOsFgAD>: Disconnected: Logged out in=82 out=779 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:13:53.943878-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=953, session=<CQxZk5RR8oOsFgAD>
+2026-05-11T18:13:53.998468-07:00 mail dovecot: imap(director@reprobados.com)<953><CQxZk5RR8oOsFgAD>: Disconnected: Logged out in=70 out=717 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:13:54.158798-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=959, session=<KhKik5RRss2sFgAD>
+2026-05-11T18:13:54.203694-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=960, session=<N0Sik5RRvM2sFgAD>
+2026-05-11T18:13:54.211932-07:00 mail dovecot: imap(director@reprobados.com)<959><KhKik5RRss2sFgAD>: Disconnected: Logged out in=76 out=638 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:13:54.236448-07:00 mail dovecot: imap(director@reprobados.com)<960><N0Sik5RRvM2sFgAD>: Disconnected: Logged out in=233 out=1102 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:14:00.979792-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=971, session=<Zi0KlJRRxM2sFgAD>
+2026-05-11T18:14:00.992307-07:00 mail dovecot: imap(director@reprobados.com)<971><Zi0KlJRRxM2sFgAD>: Disconnected: Logged out in=32 out=566 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:14:01.053815-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=973, session=<AFULlJRRyM2sFgAD>
+2026-05-11T18:14:01.075160-07:00 mail dovecot: imap(director@reprobados.com)<973><AFULlJRRyM2sFgAD>: Disconnected: Logged out in=44 out=668 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:14:40.082562-07:00 mail postfix/submission/smtpd[1031]: connect from roundcubemail.practica12_red_correo[172.22.0.3]
+2026-05-11T18:14:40.086682-07:00 mail opendmarc[694]: ignoring connection from roundcubemail.practica12_red_correo
+2026-05-11T18:14:40.124973-07:00 mail postfix/submission/smtpd[1031]: 1E7B210A6AC: client=roundcubemail.practica12_red_correo[172.22.0.3], sasl_method=LOGIN, sasl_username=director@reprobados.com
+2026-05-11T18:14:40.173458-07:00 mail postfix/sender-cleanup/cleanup[1034]: 1E7B210A6AC: replace: header MIME-Version: 1.0 from roundcubemail.practica12_red_correo[172.22.0.3]; from=<director@reprobados.com> to=<admin@reprobados.com> proto=ESMTP helo=<192.168.56.104>: MIME-Version: 1.0
+2026-05-11T18:14:40.173548-07:00 mail postfix/sender-cleanup/cleanup[1034]: 1E7B210A6AC: message-id=<e3519aaf72ddf8cfaa9688fecd4cf4f3@reprobados.com>
+2026-05-11T18:14:40.185445-07:00 mail opendkim[685]: 1E7B210A6AC: DKIM-Signature field added (s=mail, d=reprobados.com)
+2026-05-11T18:14:40.232008-07:00 mail postfix/qmgr[847]: 1E7B210A6AC: from=<director@reprobados.com>, size=656, nrcpt=1 (queue active)
+2026-05-11T18:14:40.232976-07:00 mail postfix/submission/smtpd[1031]: disconnect from roundcubemail.practica12_red_correo[172.22.0.3] ehlo=1 auth=1 mail=1 rcpt=1 data=1 quit=1 commands=6
+2026-05-11T18:14:40.260485-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1037, session=<m5JhlpRRAIysFgAD>
+2026-05-11T18:14:40.303464-07:00 mail dovecot: imap(director@reprobados.com)<1037><m5JhlpRRAIysFgAD>: Disconnected: Logged out in=446 out=745 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:14:40.874373-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1046, session=<MupqlpRRCoysFgAD>
+2026-05-11T18:14:40.902114-07:00 mail dovecot: imap(director@reprobados.com)<1046><MupqlpRRCoysFgAD>: Disconnected: Logged out in=70 out=717 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:14:41.123521-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1049, session=<HqFulpRRFoysFgAD>
+2026-05-11T18:14:41.180492-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1050, session=<h/RulpRRHoysFgAD>
+2026-05-11T18:14:41.193417-07:00 mail dovecot: imap(director@reprobados.com)<1049><HqFulpRRFoysFgAD>: Disconnected: Logged out in=76 out=638 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:14:41.206281-07:00 mail dovecot: imap(director@reprobados.com)<1050><h/RulpRRHoysFgAD>: Disconnected: Logged out in=120 out=850 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:14:41.375185-07:00 mail postfix/smtpd-amavis/smtpd[1051]: connect from localhost[127.0.0.1]
+2026-05-11T18:14:41.388175-07:00 mail postfix/smtpd-amavis/smtpd[1051]: 5EBEF10A6B8: client=localhost[127.0.0.1]
+2026-05-11T18:14:41.390240-07:00 mail postfix/cleanup[1052]: 5EBEF10A6B8: message-id=<e3519aaf72ddf8cfaa9688fecd4cf4f3@reprobados.com>
+2026-05-11T18:14:41.397695-07:00 mail postfix/qmgr[847]: 5EBEF10A6B8: from=<director@reprobados.com>, size=1370, nrcpt=1 (queue active)
+2026-05-11T18:14:41.402812-07:00 mail amavis[866]: (00866-01) Passed CLEAN {RelayedInbound}, [172.22.0.3]:60308 <director@reprobados.com> -> <admin@reprobados.com>, Queue-ID: 1E7B210A6AC, Message-ID: <e3519aaf72ddf8cfaa9688fecd4cf4f3@reprobados.com>, mail_id: aKYQMdk2kwR1, Hits: -0.298, size: 1157, queued_as: 5EBEF10A6B8, 1153 ms
+2026-05-11T18:14:41.404138-07:00 mail postfix/smtp-amavis/smtp[1035]: 1E7B210A6AC: to=<admin@reprobados.com>, relay=127.0.0.1[127.0.0.1]:10024, delay=1.3, delays=0.13/0.02/0.01/1.1, dsn=2.0.0, status=sent (250 2.0.0 from MTA(smtp:[127.0.0.1]:10025): 250 2.0.0 Ok: queued as 5EBEF10A6B8)
+2026-05-11T18:14:41.404612-07:00 mail postfix/qmgr[847]: 1E7B210A6AC: removed
+2026-05-11T18:14:41.438718-07:00 mail dovecot: lmtp(1054): Connect from local
+2026-05-11T18:14:41.470367-07:00 mail dovecot: lmtp(admin@reprobados.com)<1054><FGwjGgF/AmoeBAAAcWWaOA>: sieve: msgid=<e3519aaf72ddf8cfaa9688fecd4cf4f3@reprobados.com>: stored mail into mailbox 'INBOX'
+2026-05-11T18:14:41.471075-07:00 mail postfix/lmtp[1053]: 5EBEF10A6B8: to=<admin@reprobados.com>, relay=mail.reprobados.com[/var/run/dovecot/lmtp], delay=0.09, delays=0.02/0.02/0.03/0.03, dsn=2.0.0, status=sent (250 2.0.0 <admin@reprobados.com> FGwjGgF/AmoeBAAAcWWaOA Saved)
+2026-05-11T18:14:41.471229-07:00 mail postfix/qmgr[847]: 5EBEF10A6B8: removed
+2026-05-11T18:14:41.471332-07:00 mail dovecot: lmtp(1054): Disconnect from local: Logged out (state=READY)
+2026-05-11T18:14:58.866535-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1083, session=<93t9l5RRbousFgAD>
+2026-05-11T18:14:58.887631-07:00 mail dovecot: imap(director@reprobados.com)<1083><93t9l5RRbousFgAD>: Disconnected: Logged out in=364 out=1665 deleted=0 expunged=0 trashed=0 hdr_count=1 hdr_bytes=181 body_count=0 body_bytes=0
+2026-05-11T18:15:42.004470-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1148, session=<ia4PmpRR5uqsFgAD>
+2026-05-11T18:15:42.013419-07:00 mail dovecot: imap(director@reprobados.com)<1148><ia4PmpRR5uqsFgAD>: Disconnected: Logged out in=126 out=1063 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:16:41.998150-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1240, session=<MSejnZRRsK+sFgAD>
+2026-05-11T18:16:42.005863-07:00 mail dovecot: imap(director@reprobados.com)<1240><MSejnZRRsK+sFgAD>: Disconnected: Logged out in=126 out=1063 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:17:42.000022-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1332, session=<abI2oZRRvLOsFgAD>
+2026-05-11T18:17:42.006763-07:00 mail dovecot: imap(director@reprobados.com)<1332><abI2oZRRvLOsFgAD>: Disconnected: Logged out in=126 out=1063 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:18:41.996532-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1435, session=<qDTKpJRRDNusFgAD>
+2026-05-11T18:18:42.006235-07:00 mail dovecot: imap(director@reprobados.com)<1435><qDTKpJRRDNusFgAD>: Disconnected: Logged out in=126 out=1063 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:19:41.497160-07:00 mail postfix/smtpd-amavis/smtpd[1051]: timeout after END-OF-MESSAGE from localhost[127.0.0.1]
+2026-05-11T18:19:41.497301-07:00 mail postfix/smtpd-amavis/smtpd[1051]: disconnect from localhost[127.0.0.1] ehlo=1 mail=1 rcpt=1 data=1 commands=4
+2026-05-11T18:19:41.997611-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1527, session=<4bpdqJRRzpasFgAD>
+2026-05-11T18:19:42.005355-07:00 mail dovecot: imap(director@reprobados.com)<1527><4bpdqJRRzpasFgAD>: Disconnected: Logged out in=126 out=1063 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:20:59.051943-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1644, session=<THL1rJRRQresFgAD>
+2026-05-11T18:20:59.069418-07:00 mail dovecot: imap(director@reprobados.com)<1644><THL1rJRRQresFgAD>: Disconnected: Logged out in=126 out=1063 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:21:59.041932-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1736, session=<cc+IsJRR7OesFgAD>
+2026-05-11T18:21:59.049904-07:00 mail dovecot: imap(director@reprobados.com)<1736><cc+IsJRR7OesFgAD>: Disconnected: Logged out in=126 out=1063 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:22:59.046763-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1825, session=<12sctJRRYKmsFgAD>
+2026-05-11T18:22:59.054913-07:00 mail dovecot: imap(director@reprobados.com)<1825><12sctJRRYKmsFgAD>: Disconnected: Logged out in=126 out=1063 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:23:59.040604-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1917, session=<NN6vt5RRPMOsFgAD>
+2026-05-11T18:23:59.049892-07:00 mail dovecot: imap(director@reprobados.com)<1917><NN6vt5RRPMOsFgAD>: Disconnected: Logged out in=126 out=1063 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:24:59.036930-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=2009, session=<g1pDu5RRCIesFgAD>
+2026-05-11T18:24:59.046818-07:00 mail dovecot: imap(director@reprobados.com)<2009><g1pDu5RRCIesFgAD>: Disconnected: Logged out in=126 out=1063 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:25:59.035171-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=2098, session=<wtLWvpRRWNSsFgAD>
+2026-05-11T18:25:59.046454-07:00 mail dovecot: imap(director@reprobados.com)<2098><wtLWvpRRWNSsFgAD>: Disconnected: Logged out in=126 out=1063 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:26:59.001320-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=2184, session=<HuFpwpRRFJysFgAD>
+2026-05-11T18:26:59.009248-07:00 mail dovecot: imap(director@reprobados.com)<2184><HuFpwpRRFJysFgAD>: Disconnected: Logged out in=126 out=1063 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:27:02.277543-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=2192, session=<UMmbwpRR8tqsFgAD>
+2026-05-11T18:27:02.292517-07:00 mail dovecot: imap(director@reprobados.com)<2192><UMmbwpRR8tqsFgAD>: Disconnected: Logged out in=32 out=566 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:27:02.353982-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=2194, session=<CgedwpRRANusFgAD>
+2026-05-11T18:27:02.383509-07:00 mail dovecot: imap(director@reprobados.com)<2194><CgedwpRRANusFgAD>: Disconnected: Logged out in=44 out=668 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:28:24.584044-07:00 mail postfix/submission/smtpd[2318]: connect from roundcubemail.practica12_red_correo[172.22.0.3]
+2026-05-11T18:28:24.586882-07:00 mail opendmarc[694]: ignoring connection from roundcubemail.practica12_red_correo
+2026-05-11T18:28:24.628038-07:00 mail postfix/submission/smtpd[2318]: 994AC10A6B8: client=roundcubemail.practica12_red_correo[172.22.0.3], sasl_method=LOGIN, sasl_username=director@reprobados.com
+2026-05-11T18:28:24.630244-07:00 mail postfix/sender-cleanup/cleanup[2322]: 994AC10A6B8: replace: header MIME-Version: 1.0 from roundcubemail.practica12_red_correo[172.22.0.3]; from=<director@reprobados.com> to=<admin@reprobados.com> proto=ESMTP helo=<192.168.56.104>: MIME-Version: 1.0
+2026-05-11T18:28:24.630641-07:00 mail postfix/sender-cleanup/cleanup[2322]: 994AC10A6B8: message-id=<63b5329eda911613a4ed47f1118f2cad@reprobados.com>
+2026-05-11T18:28:24.680062-07:00 mail opendkim[685]: 994AC10A6B8: DKIM-Signature field added (s=mail, d=reprobados.com)
+2026-05-11T18:28:24.729067-07:00 mail postfix/submission/smtpd[2318]: disconnect from roundcubemail.practica12_red_correo[172.22.0.3] ehlo=1 auth=1 mail=1 rcpt=1 data=1 quit=1 commands=6
+2026-05-11T18:28:24.729322-07:00 mail postfix/qmgr[847]: 994AC10A6B8: from=<director@reprobados.com>, size=279171, nrcpt=1 (queue active)
+2026-05-11T18:28:24.754952-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=2325, session=<UlSGx5RRVJ6sFgAD>
+2026-05-11T18:28:24.803055-07:00 mail dovecot: imap(director@reprobados.com)<2325><UlSGx5RRVJ6sFgAD>: Disconnected: Logged out in=278966 out=745 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:28:25.365183-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=2331, session=<b6iPx5RRXp6sFgAD>
+2026-05-11T18:28:25.399242-07:00 mail dovecot: imap(director@reprobados.com)<2331><b6iPx5RRXp6sFgAD>: Disconnected: Logged out in=70 out=709 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:28:25.627035-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=2334, session=<AqiTx5RRYJ6sFgAD>
+2026-05-11T18:28:25.639364-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=2335, session=<M9GTx5RRbJ6sFgAD>
+2026-05-11T18:28:25.639749-07:00 mail dovecot: imap(director@reprobados.com)<2334><AqiTx5RRYJ6sFgAD>: Disconnected: Logged out in=119 out=841 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:28:25.674233-07:00 mail dovecot: imap(director@reprobados.com)<2335><M9GTx5RRbJ6sFgAD>: Disconnected: Logged out in=315 out=1968 deleted=0 expunged=0 trashed=0 hdr_count=2 hdr_bytes=389 body_count=0 body_bytes=0
+2026-05-11T18:28:25.755556-07:00 mail postfix/smtpd-amavis/smtpd[2336]: connect from localhost[127.0.0.1]
+2026-05-11T18:28:25.775419-07:00 mail postfix/smtpd-amavis/smtpd[2336]: BD3C110A6C2: client=localhost[127.0.0.1]
+2026-05-11T18:28:25.778679-07:00 mail postfix/cleanup[2337]: BD3C110A6C2: message-id=<63b5329eda911613a4ed47f1118f2cad@reprobados.com>
+2026-05-11T18:28:25.791757-07:00 mail postfix/qmgr[847]: BD3C110A6C2: from=<director@reprobados.com>, size=279885, nrcpt=1 (queue active)
+2026-05-11T18:28:25.796468-07:00 mail amavis[867]: (00867-01) Passed CLEAN {RelayedInbound}, [172.22.0.3]:59130 <director@reprobados.com> -> <admin@reprobados.com>, Queue-ID: 994AC10A6B8, Message-ID: <63b5329eda911613a4ed47f1118f2cad@reprobados.com>, mail_id: A_bo9w89B2VQ, Hits: -0.297, size: 279672, queued_as: BD3C110A6C2, 1052 ms
+2026-05-11T18:28:25.799219-07:00 mail postfix/smtp-amavis/smtp[2323]: 994AC10A6B8: to=<admin@reprobados.com>, relay=127.0.0.1[127.0.0.1]:10024, delay=1.2, delays=0.12/0.01/0.01/1, dsn=2.0.0, status=sent (250 2.0.0 from MTA(smtp:[127.0.0.1]:10025): 250 2.0.0 Ok: queued as BD3C110A6C2)
+2026-05-11T18:28:25.801602-07:00 mail postfix/qmgr[847]: 994AC10A6B8: removed
+2026-05-11T18:28:25.829769-07:00 mail dovecot: lmtp(2339): Connect from local
+2026-05-11T18:28:25.870330-07:00 mail dovecot: lmtp(admin@reprobados.com)<2339><XhxwMTmCAmojCQAAcWWaOA>: sieve: msgid=<63b5329eda911613a4ed47f1118f2cad@reprobados.com>: stored mail into mailbox 'INBOX'
+2026-05-11T18:28:25.871064-07:00 mail postfix/lmtp[2338]: BD3C110A6C2: to=<admin@reprobados.com>, relay=mail.reprobados.com[/var/run/dovecot/lmtp], delay=0.11, delays=0.03/0.02/0.02/0.04, dsn=2.0.0, status=sent (250 2.0.0 <admin@reprobados.com> XhxwMTmCAmojCQAAcWWaOA Saved)
+2026-05-11T18:28:25.871111-07:00 mail dovecot: lmtp(2339): Disconnect from local: Logged out (state=READY)
+2026-05-11T18:28:25.871222-07:00 mail postfix/qmgr[847]: BD3C110A6C2: removed
+2026-05-11T18:28:34.741615-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=2356, session=<er4eyJRRmIesFgAD>
+2026-05-11T18:28:34.765630-07:00 mail dovecot: imap(director@reprobados.com)<2356><er4eyJRRmIesFgAD>: Disconnected: Logged out in=70 out=717 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:28:34.981052-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=2359, session=<MlgiyJRRnoesFgAD>
+2026-05-11T18:28:34.987638-07:00 mail dovecot: imap-login: Login: user=<director@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=2360, session=<fX8iyJRRroesFgAD>
+2026-05-11T18:28:34.997702-07:00 mail dovecot: imap(director@reprobados.com)<2360><fX8iyJRRroesFgAD>: Disconnected: Logged out in=119 out=841 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:28:34.998923-07:00 mail dovecot: imap(director@reprobados.com)<2359><MlgiyJRRnoesFgAD>: Disconnected: Logged out in=315 out=1960 deleted=0 expunged=0 trashed=0 hdr_count=2 hdr_bytes=389 body_count=0 body_bytes=0
+2026-05-11T18:28:56.652897-07:00 mail dovecot: imap-login: Login: user=<admin@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=2395, session=<HB5tyZRRVOOsFgAD>
+2026-05-11T18:28:56.683153-07:00 mail dovecot: imap(admin@reprobados.com)<2395><HB5tyZRRVOOsFgAD>: Disconnected: Logged out in=82 out=779 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:28:56.719142-07:00 mail dovecot: imap-login: Login: user=<admin@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=2397, session=<4BVuyZRRYuOsFgAD>
+2026-05-11T18:28:56.739688-07:00 mail dovecot: imap(admin@reprobados.com)<2397><4BVuyZRRYuOsFgAD>: Disconnected: Logged out in=70 out=717 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:28:56.902223-07:00 mail dovecot: imap-login: Login: user=<admin@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=2400, session=<jNVwyZRRauOsFgAD>
+2026-05-11T18:28:56.925830-07:00 mail dovecot: imap-login: Login: user=<admin@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=2401, session=<mStxyZRReOOsFgAD>
+2026-05-11T18:28:56.952757-07:00 mail dovecot: imap(admin@reprobados.com)<2400><jNVwyZRRauOsFgAD>: Disconnected: Logged out in=370 out=2148 deleted=0 expunged=0 trashed=0 hdr_count=2 hdr_bytes=389 body_count=0 body_bytes=0
+2026-05-11T18:28:57.113690-07:00 mail dovecot: imap(admin@reprobados.com)<2401><mStxyZRReOOsFgAD>: Disconnected: Logged out in=233 out=1134 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:29:00.155191-07:00 mail dovecot: imap-login: Login: user=<admin@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=2406, session=<nIyiyZRRiOOsFgAD>
+2026-05-11T18:29:00.194879-07:00 mail dovecot: imap(admin@reprobados.com)<2406><nIyiyZRRiOOsFgAD>: Disconnected: Logged out in=512 out=2926 deleted=0 expunged=0 trashed=0 hdr_count=1 hdr_bytes=311 body_count=2 body_bytes=460
+2026-05-11T18:29:00.249903-07:00 mail dovecot: imap-login: Login: user=<admin@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=2411, session=<1e6jyZRRkuOsFgAD>
+2026-05-11T18:29:00.341675-07:00 mail dovecot: imap(admin@reprobados.com)<2411><1e6jyZRRkuOsFgAD>: Disconnected: Logged out in=437 out=205215 deleted=0 expunged=0 trashed=0 hdr_count=1 hdr_bytes=311 body_count=2 body_bytes=202973
+2026-05-11T18:29:02.008106-07:00 mail dovecot: imap-login: Login: user=<admin@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=2413, session=<0c6+yZRRqO2sFgAD>
+2026-05-11T18:29:02.037321-07:00 mail dovecot: imap(admin@reprobados.com)<2413><0c6+yZRRqO2sFgAD>: Disconnected: Logged out in=437 out=205215 deleted=0 expunged=0 trashed=0 hdr_count=1 hdr_bytes=311 body_count=2 body_bytes=202973
+2026-05-11T18:29:25.983235-07:00 mail dovecot: imap-login: Login: user=<admin@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=2451, session=<SKgsy5RR7uesFgAD>
+2026-05-11T18:29:26.028317-07:00 mail dovecot: imap(admin@reprobados.com)<2451><SKgsy5RR7uesFgAD>: Disconnected: Logged out in=70 out=717 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:29:26.169031-07:00 mail dovecot: imap-login: Login: user=<admin@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=2454, session=<53cvy5RR9OesFgAD>
+2026-05-11T18:29:26.182868-07:00 mail dovecot: imap-login: Login: user=<admin@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=2455, session=<Fqovy5RR9uesFgAD>
+2026-05-11T18:29:26.198132-07:00 mail dovecot: imap(admin@reprobados.com)<2454><53cvy5RR9OesFgAD>: Disconnected: Logged out in=74 out=637 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:29:26.199720-07:00 mail dovecot: imap(admin@reprobados.com)<2455><Fqovy5RR9uesFgAD>: Disconnected: Logged out in=119 out=841 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:29:56.964570-07:00 mail dovecot: imap-login: Login: user=<admin@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=2505, session=<2F8FzZRRbOqsFgAD>
+2026-05-11T18:29:56.975148-07:00 mail dovecot: imap(admin@reprobados.com)<2505><2F8FzZRRbOqsFgAD>: Disconnected: Logged out in=119 out=1117 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:30:26.958080-07:00 mail dovecot: imap-login: Login: user=<admin@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=2549, session=<5gzPzpRR2tmsFgAD>
+2026-05-11T18:30:26.969980-07:00 mail dovecot: imap(admin@reprobados.com)<2549><5gzPzpRR2tmsFgAD>: Disconnected: Logged out in=127 out=1094 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:30:56.962693-07:00 mail dovecot: imap-login: Login: user=<admin@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=2596, session=<bdqY0JRRMKqsFgAD>
+2026-05-11T18:30:56.983545-07:00 mail dovecot: imap(admin@reprobados.com)<2596><bdqY0JRRMKqsFgAD>: Disconnected: Logged out in=90 out=1008 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:31:20.473038-07:00 mail postfix/postfix-script[2786]: refreshing the Postfix mail system
+2026-05-11T18:31:20.485886-07:00 mail postfix/master[844]: reload -- version 3.7.11, configuration /etc/postfix
+2026-05-11T18:31:20.516479-07:00 mail dovecot: master: Warning: SIGHUP received - reloading configuration
+2026-05-11T18:31:20.707780-07:00 mail amavis[751]: (!)Net::Server: 2026/05/11-18:31:20 Re-exec server during HUP
+2026-05-11T18:31:20.719820-07:00 mail postfix/smtpd-amavis/smtpd[2336]: disconnect from localhost[127.0.0.1] ehlo=1 mail=1 rcpt=1 data=1 commands=4
+2026-05-11T18:31:21.145944-07:00 mail amavis[751]: starting. (warm) /usr/sbin/amavisd at mail.reprobados.com amavis-2.13.0 (20230106), Unicode aware, LC_CTYPE="C.UTF-8"
+2026-05-11T18:31:21.146054-07:00 mail amavis[751]: perl=5.036000, user=999, EUID: 999 (999);  group=(), EGID: 999 999 (999 999)
+2026-05-11T18:31:21.352065-07:00 mail amavis[751]: Net::Server: Group Not Defined.  Defaulting to EGID '999 999'
+2026-05-11T18:31:21.352197-07:00 mail amavis[751]: Net::Server: User Not Defined.  Defaulting to EUID '999'
+2026-05-11T18:31:21.363097-07:00 mail amavis[751]: No ext program for   .zoo, tried: zoo
+2026-05-11T18:31:21.363229-07:00 mail amavis[751]: No ext program for   .doc, tried: ripole
+2026-05-11T18:31:21.363477-07:00 mail amavis[751]: No ext program for   .zst, tried: unzstd
+2026-05-11T18:31:21.363565-07:00 mail amavis[751]: No decoder for       .F   
+2026-05-11T18:31:21.363574-07:00 mail amavis[751]: No decoder for       .doc 
+2026-05-11T18:31:21.363580-07:00 mail amavis[751]: No decoder for       .zoo 
+2026-05-11T18:31:21.363586-07:00 mail amavis[751]: No decoder for       .zst 
+2026-05-11T18:31:59.664200-07:00 mail dovecot: master: Dovecot v2.3.19.1 (9b53102964) starting up for imap, lmtp
+2026-05-11T18:32:00.053504-07:00 mail opendkim[698]: OpenDKIM Filter v2.11.0 starting (args: -f)
+2026-05-11T18:32:00.251895-07:00 mail opendmarc[707]: OpenDMARC Filter v1.4.2 starting (args: -f -p inet:8893@localhost -P /var/run/opendmarc/opendmarc.pid)
+2026-05-11T18:32:00.252093-07:00 mail opendmarc[707]: additional trusted authentication services: mail.reprobados.com
+2026-05-11T18:32:01.393550-07:00 mail postfix/postfix-script[852]: starting the Postfix mail system
+2026-05-11T18:32:01.412358-07:00 mail postfix/master[853]: daemon started -- version 3.7.11, configuration /etc/postfix
+2026-05-11T18:32:01.782852-07:00 mail amavis[778]: starting. /usr/sbin/amavisd at mail.reprobados.com amavis-2.13.0 (20230106), Unicode aware, LC_CTYPE="C.UTF-8"
+2026-05-11T18:32:01.783089-07:00 mail amavis[778]: perl=5.036000, user=, EUID: 999 (999);  group=(), EGID: 999 999 (999 999)
+2026-05-11T18:32:01.960774-07:00 mail amavis[778]: Net::Server: Group Not Defined.  Defaulting to EGID '999 999'
+2026-05-11T18:32:01.960980-07:00 mail amavis[778]: Net::Server: User Not Defined.  Defaulting to EUID '999'
+2026-05-11T18:32:01.969531-07:00 mail amavis[778]: No ext program for   .zoo, tried: zoo
+2026-05-11T18:32:01.969821-07:00 mail amavis[778]: No ext program for   .doc, tried: ripole
+2026-05-11T18:32:01.970169-07:00 mail amavis[778]: No ext program for   .zst, tried: unzstd
+2026-05-11T18:32:01.970393-07:00 mail amavis[778]: No decoder for       .F   
+2026-05-11T18:32:01.970403-07:00 mail amavis[778]: No decoder for       .doc 
+2026-05-11T18:32:01.970409-07:00 mail amavis[778]: No decoder for       .zoo 
+2026-05-11T18:32:01.970415-07:00 mail amavis[778]: No decoder for       .zst 
+2026-05-11T18:33:16.702880-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=967, session=<th7t2JRRoLCsFgAD>
+2026-05-11T18:33:16.726674-07:00 mail dovecot: imap(kami@reprobados.com)<967><th7t2JRRoLCsFgAD>: Disconnected: Logged out in=82 out=779 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:33:16.768175-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=969, session=<piDu2JRRsLCsFgAD>
+2026-05-11T18:33:16.802506-07:00 mail dovecot: imap(kami@reprobados.com)<969><piDu2JRRsLCsFgAD>: Disconnected: Logged out in=70 out=709 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:33:16.949925-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=972, session=<v+Xw2JRRtrCsFgAD>
+2026-05-11T18:33:16.995944-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=973, session=<diHx2JRRvrCsFgAD>
+2026-05-11T18:33:17.004916-07:00 mail dovecot: imap(kami@reprobados.com)<972><v+Xw2JRRtrCsFgAD>: Disconnected: Logged out in=76 out=630 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:33:17.178604-07:00 mail dovecot: imap(kami@reprobados.com)<973><diHx2JRRvrCsFgAD>: Disconnected: Logged out in=233 out=1134 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:33:26.982174-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=990, session=<xgGK2ZRRDuGsFgAD>
+2026-05-11T18:33:27.052356-07:00 mail dovecot: imap(kami@reprobados.com)<990><xgGK2ZRRDuGsFgAD>: Disconnected: Logged out in=70 out=717 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:33:27.259627-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=993, session=<ZzaO2ZRRHOGsFgAD>
+2026-05-11T18:33:27.273270-07:00 mail dovecot: imap(kami@reprobados.com)<993><ZzaO2ZRRHOGsFgAD>: Disconnected: Logged out in=74 out=629 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:33:27.275135-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=994, session=<rmeO2ZRRKOGsFgAD>
+2026-05-11T18:33:27.287822-07:00 mail dovecot: imap(kami@reprobados.com)<994><rmeO2ZRRKOGsFgAD>: Disconnected: Logged out in=119 out=841 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:33:34.466941-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1005, session=<yjH82ZRRbLOsFgAD>
+2026-05-11T18:33:34.480212-07:00 mail dovecot: imap(kami@reprobados.com)<1005><yjH82ZRRbLOsFgAD>: Disconnected: Logged out in=32 out=566 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:33:34.539731-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1007, session=</Ev92ZRRdLOsFgAD>
+2026-05-11T18:33:34.571505-07:00 mail dovecot: imap(kami@reprobados.com)<1007></Ev92ZRRdLOsFgAD>: Disconnected: Logged out in=44 out=668 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:33:52.245292-07:00 mail postfix/submission/smtpd[1035]: connect from roundcubemail.practica12_red_correo[172.22.0.3]
+2026-05-11T18:33:52.249447-07:00 mail opendmarc[707]: ignoring connection from roundcubemail.practica12_red_correo
+2026-05-11T18:33:52.285609-07:00 mail postfix/submission/smtpd[1035]: 45B3B10A6A2: client=roundcubemail.practica12_red_correo[172.22.0.3], sasl_method=LOGIN, sasl_username=kami@reprobados.com
+2026-05-11T18:33:52.329556-07:00 mail postfix/sender-cleanup/cleanup[1038]: 45B3B10A6A2: replace: header MIME-Version: 1.0 from roundcubemail.practica12_red_correo[172.22.0.3]; from=<kami@reprobados.com> to=<admin@reprobados.com> proto=ESMTP helo=<192.168.56.104>: MIME-Version: 1.0
+2026-05-11T18:33:52.329631-07:00 mail postfix/sender-cleanup/cleanup[1038]: 45B3B10A6A2: message-id=<5f63efe8f10cc2c8d39df88287e6caef@reprobados.com>
+2026-05-11T18:33:52.340977-07:00 mail opendkim[698]: 45B3B10A6A2: DKIM-Signature field added (s=mail, d=reprobados.com)
+2026-05-11T18:33:52.387613-07:00 mail postfix/submission/smtpd[1035]: disconnect from roundcubemail.practica12_red_correo[172.22.0.3] ehlo=1 auth=1 mail=1 rcpt=1 data=1 quit=1 commands=6
+2026-05-11T18:33:52.387642-07:00 mail postfix/qmgr[856]: 45B3B10A6A2: from=<kami@reprobados.com>, size=645, nrcpt=1 (queue active)
+2026-05-11T18:33:52.417790-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1041, session=<8RIO25RRpNGsFgAD>
+2026-05-11T18:33:52.457652-07:00 mail dovecot: imap(kami@reprobados.com)<1041><8RIO25RRpNGsFgAD>: Disconnected: Logged out in=439 out=745 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:33:52.974372-07:00 mail postfix/smtpd-amavis/smtpd[1049]: connect from localhost[127.0.0.1]
+2026-05-11T18:33:53.006218-07:00 mail postfix/smtpd-amavis/smtpd[1049]: 017EB10A6A6: client=localhost[127.0.0.1]
+2026-05-11T18:33:53.012722-07:00 mail postfix/cleanup[1050]: 017EB10A6A6: message-id=<5f63efe8f10cc2c8d39df88287e6caef@reprobados.com>
+2026-05-11T18:33:53.018482-07:00 mail postfix/qmgr[856]: 017EB10A6A6: from=<kami@reprobados.com>, size=1359, nrcpt=1 (queue active)
+2026-05-11T18:33:53.031742-07:00 mail amavis[876]: (00876-01) Passed CLEAN {RelayedInbound}, [172.22.0.3]:45300 <kami@reprobados.com> -> <admin@reprobados.com>, Queue-ID: 45B3B10A6A2, Message-ID: <5f63efe8f10cc2c8d39df88287e6caef@reprobados.com>, mail_id: 22Y1m-b3FzSP, Hits: -0.298, size: 1146, queued_as: 017EB10A6A6, 627 ms
+2026-05-11T18:33:53.033324-07:00 mail postfix/smtp-amavis/smtp[1039]: 45B3B10A6A2: to=<admin@reprobados.com>, relay=127.0.0.1[127.0.0.1]:10024, delay=0.76, delays=0.12/0.02/0.01/0.62, dsn=2.0.0, status=sent (250 2.0.0 from MTA(smtp:[127.0.0.1]:10025): 250 2.0.0 Ok: queued as 017EB10A6A6)
+2026-05-11T18:33:53.033625-07:00 mail postfix/qmgr[856]: 45B3B10A6A2: removed
+2026-05-11T18:33:53.035042-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1053, session=<lGkX25RRtNGsFgAD>
+2026-05-11T18:33:53.062401-07:00 mail dovecot: lmtp(1054): Connect from local
+2026-05-11T18:33:53.078651-07:00 mail dovecot: imap(kami@reprobados.com)<1053><lGkX25RRtNGsFgAD>: Disconnected: Logged out in=70 out=717 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:33:53.117886-07:00 mail dovecot: lmtp(admin@reprobados.com)<1054><KhCkA4GDAmoeBAAAcWWaOA>: sieve: msgid=<5f63efe8f10cc2c8d39df88287e6caef@reprobados.com>: stored mail into mailbox 'INBOX'
+2026-05-11T18:33:53.118603-07:00 mail postfix/lmtp[1052]: 017EB10A6A6: to=<admin@reprobados.com>, relay=mail.reprobados.com[/var/run/dovecot/lmtp], delay=0.13, delays=0.03/0.03/0.02/0.05, dsn=2.0.0, status=sent (250 2.0.0 <admin@reprobados.com> KhCkA4GDAmoeBAAAcWWaOA Saved)
+2026-05-11T18:33:53.118774-07:00 mail postfix/qmgr[856]: 017EB10A6A6: removed
+2026-05-11T18:33:53.118910-07:00 mail dovecot: lmtp(1054): Disconnect from local: Logged out (state=READY)
+2026-05-11T18:33:53.240529-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1057, session=<s5ka25RRuNGsFgAD>
+2026-05-11T18:33:53.281075-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1058, session=<uP4a25RRvNGsFgAD>
+2026-05-11T18:33:53.287402-07:00 mail dovecot: imap(kami@reprobados.com)<1057><s5ka25RRuNGsFgAD>: Disconnected: Logged out in=76 out=630 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:33:53.319225-07:00 mail dovecot: imap(kami@reprobados.com)<1058><uP4a25RRvNGsFgAD>: Disconnected: Logged out in=120 out=842 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:33:56.887552-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1063, session=<cUdS25RRzNGsFgAD>
+2026-05-11T18:33:56.926391-07:00 mail dovecot: imap(kami@reprobados.com)<1063><cUdS25RRzNGsFgAD>: Disconnected: Logged out in=70 out=717 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:33:57.124299-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1069, session=<GOlV25RR3NGsFgAD>
+2026-05-11T18:33:57.146878-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1070, session=<rBpW25RR4tGsFgAD>
+2026-05-11T18:33:57.155298-07:00 mail dovecot: imap(kami@reprobados.com)<1070><rBpW25RR4tGsFgAD>: Disconnected: Logged out in=120 out=850 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:33:57.160071-07:00 mail dovecot: imap(kami@reprobados.com)<1069><GOlV25RR3NGsFgAD>: Disconnected: Logged out in=76 out=638 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:34:07.608153-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1087, session=<H+X125RR6OysFgAD>
+2026-05-11T18:34:07.620143-07:00 mail dovecot: imap(kami@reprobados.com)<1087><H+X125RR6OysFgAD>: Disconnected: Logged out in=76 out=630 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:34:10.841400-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1092, session=<yjYn3JRR+OysFgAD>
+2026-05-11T18:34:10.871544-07:00 mail dovecot: imap(kami@reprobados.com)<1092><yjYn3JRR+OysFgAD>: Disconnected: Logged out in=70 out=709 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:34:11.026090-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1095, session=<7u4p3JRRBu2sFgAD>
+2026-05-11T18:34:11.068220-07:00 mail dovecot: imap(kami@reprobados.com)<1095><7u4p3JRRBu2sFgAD>: Disconnected: Logged out in=76 out=622 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:34:11.073872-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1096, session=<Nzkq3JRREu2sFgAD>
+2026-05-11T18:34:11.090205-07:00 mail dovecot: imap(kami@reprobados.com)<1096><Nzkq3JRREu2sFgAD>: Disconnected: Logged out in=120 out=842 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:34:14.208572-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1104, session=<Ppxa3JRRTrusFgAD>
+2026-05-11T18:34:14.239581-07:00 mail dovecot: imap(kami@reprobados.com)<1104><Ppxa3JRRTrusFgAD>: Disconnected: Logged out in=70 out=709 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:34:14.407037-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1107, session=<GJpd3JRRVrusFgAD>
+2026-05-11T18:34:14.447690-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1108, session=<FtNd3JRRWLusFgAD>
+2026-05-11T18:34:14.464390-07:00 mail dovecot: imap(kami@reprobados.com)<1108><FtNd3JRRWLusFgAD>: Disconnected: Logged out in=119 out=849 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:34:14.477805-07:00 mail dovecot: imap(kami@reprobados.com)<1107><GJpd3JRRVrusFgAD>: Disconnected: Logged out in=364 out=1693 deleted=0 expunged=0 trashed=0 hdr_count=1 hdr_bytes=177 body_count=0 body_bytes=0
+2026-05-11T18:34:16.604144-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1113, session=<ciZ/3JRRWrusFgAD>
+2026-05-11T18:34:16.627876-07:00 mail dovecot: imap(kami@reprobados.com)<1113><ciZ/3JRRWrusFgAD>: Disconnected: Logged out in=427 out=1904 deleted=0 expunged=0 trashed=0 hdr_count=1 hdr_bytes=273 body_count=1 body_bytes=28
+2026-05-11T18:34:53.954347-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1172, session=<nBa53pRRLI6sFgAD>
+2026-05-11T18:34:53.963296-07:00 mail dovecot: imap(kami@reprobados.com)<1172><nBa53pRRLI6sFgAD>: Disconnected: Logged out in=50 out=581 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:35:11.864527-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1201, session=<S1/K35RRbsasFgAD>
+2026-05-11T18:35:11.879378-07:00 mail dovecot: imap(kami@reprobados.com)<1201><S1/K35RRbsasFgAD>: Disconnected: Logged out in=32 out=566 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:35:11.925540-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1203, session=<pUrL35RRfsasFgAD>
+2026-05-11T18:35:11.943475-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1205, session=<tYfL35RRisasFgAD>
+2026-05-11T18:35:11.952066-07:00 mail dovecot: imap(kami@reprobados.com)<1203><pUrL35RRfsasFgAD>: Disconnected: Logged out in=44 out=668 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:35:11.971915-07:00 mail dovecot: imap(kami@reprobados.com)<1205><tYfL35RRisasFgAD>: Disconnected: Logged out in=50 out=589 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:35:12.658766-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1207, session=<5HrW35RRjMasFgAD>
+2026-05-11T18:35:12.669777-07:00 mail dovecot: imap(kami@reprobados.com)<1207><5HrW35RRjMasFgAD>: Disconnected: Logged out in=32 out=566 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:35:12.715714-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1209, session=<ik3X35RRkMasFgAD>
+2026-05-11T18:35:12.750665-07:00 mail dovecot: imap(kami@reprobados.com)<1209><ik3X35RRkMasFgAD>: Disconnected: Logged out in=44 out=668 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:35:13.360224-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1211, session=<mC7h35RRlsasFgAD>
+2026-05-11T18:35:13.382354-07:00 mail dovecot: imap(kami@reprobados.com)<1211><mC7h35RRlsasFgAD>: Disconnected: Logged out in=70 out=717 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:35:13.570195-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1213, session=<df3j35RRosasFgAD>
+2026-05-11T18:35:13.580966-07:00 mail dovecot: imap(kami@reprobados.com)<1213><df3j35RRosasFgAD>: Disconnected: Logged out in=120 out=842 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:35:13.587267-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1215, session=<MXDk35RRrMasFgAD>
+2026-05-11T18:35:13.628442-07:00 mail dovecot: imap(kami@reprobados.com)<1215><MXDk35RRrMasFgAD>: Disconnected: Logged out in=76 out=638 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:35:14.942671-07:00 mail dovecot: imap-login: Login: user=<kami@reprobados.com>, method=PLAIN, rip=172.22.0.3, lip=172.22.0.2, mpid=1220, session=<NFP535RRtsasFgAD>
+2026-05-11T18:35:14.953697-07:00 mail dovecot: imap(kami@reprobados.com)<1220><NFP535RRtsasFgAD>: Disconnected: Logged out in=126 out=1063 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2026-05-11T18:38:53.117171-07:00 mail postfix/smtpd-amavis/smtpd[1049]: timeout after END-OF-MESSAGE from localhost[127.0.0.1]
+2026-05-11T18:38:53.117308-07:00 mail postfix/smtpd-amavis/smtpd[1049]: disconnect from localhost[127.0.0.1] ehlo=1 mail=1 rcpt=1 data=1 commands=4
