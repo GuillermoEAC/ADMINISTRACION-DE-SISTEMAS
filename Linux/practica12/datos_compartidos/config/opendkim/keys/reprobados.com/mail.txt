@@ -1,3 +1,17 @@
 mail._domainkey	IN	TXT	( "v=DKIM1; h=sha256; k=rsa; "
 	  "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA80uqRXF2nQDHM9ScCOxbAGc+kph3NWwYhNPJ9qmD0ongoTsUq8KSmabZZNTtxdd9b3PZcS2MfozgQsMtgZR/6Ow69UhsNXwB6NLx8c0C7hgrOB5qcVWb4cIVcESaIGR3ylaitzDoe3rbbR6AncQ4jPnEpvamD+1DHVX7NLCEehMVzr3vo79fGDMx8qtNkmH0nPR6BX7CnOm0Jr"
 	  "b3mqzIzIMh8ONrqOVKsKLH9G1FFEA7iyagMf/PXZOiwSiTMHhWHT8qWJATPI4nGStp6s03k5LWhLus8ibNnfdQwQN91MN0kC+PpviHkt3qTBaIN0TsC1W5m+adDy2hnexxaxLKEQIDAQAB" )  ; ----- DKIM key mail for reprobados.com
+
+CREDENCIALES
+
+http://192.168.56.104:8081
+
+Cuenta del Director: director@reprobados.com
+
+Cuenta del Administrador: admin@reprobados.com
+
+Contraseña (para ambas): PasswordSegura123!
+
+AGREGAR NUEVO CONTACTO 
+
+docker exec -ti mailserver setup email add [NOMBRE]@reprobados.com PasswordSegura123!
