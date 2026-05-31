@@ -1,0 +1,37 @@
+========================================================================
+TAREA 1: DIAGNÓSTICO Y CONFIGURACIÓN DE RED INTERNA (LINUX)
+========================================================================
+
+Este módulo se compone del script 'tarea1_diag.sh' y proporciona:
+1. Diagnóstico rápido del sistema (nombre del equipo, IP actual, uso de disco).
+2. Configuración idempotente de IP Estática en la interfaz interna 'enp0s8'.
+
+------------------------------------------------------------------------
+REQUISITOS PREVIOS:
+------------------------------------------------------------------------
+- Un sistema operativo basado en Debian/Ubuntu.
+- Tener configurada una interfaz de red llamada 'enp0s8' (por ejemplo, Red Interna en VirtualBox).
+- Privilegios de superusuario (root) para la modificación de archivos del sistema.
+
+------------------------------------------------------------------------
+INSTRUCCIONES DE EJECUCIÓN (SIN COMPILACIÓN):
+------------------------------------------------------------------------
+Como este es un script de Bash interpretado, no requiere compilación previa. Para ejecutarlo correctamente:
+
+1. Asignar permisos de ejecución al script principal de administración (o al script individual):
+   $ chmod +x menu.sh
+   $ chmod +x tarea1_diag.sh
+
+2. Ejecutar el módulo mediante el orquestador principal (menú) con privilegios de root (SUDO):
+   $ sudo ./menu.sh
+
+3. Seleccionar la opción "1" en el menú principal y luego elegir la acción deseada dentro del submenú de la Tarea 1:
+   - Opción 1: Ejecutar Diagnóstico de Sistema
+   - Opción 2: Configurar Red Interna (IP Fija en enp0s8)
+
+------------------------------------------------------------------------
+DETALLES TÉCNICOS INTERNOS:
+------------------------------------------------------------------------
+- La configuración de red interna escribe directamente de forma no destructiva (idempotente) en '/etc/network/interfaces'.
+- Levanta la interfaz automáticamente usando 'ifup enp0s8'.
+- Si la IP '192.168.10.1' ya está configurada, evitará duplicar las líneas gracias a su lógica de control con 'grep'.

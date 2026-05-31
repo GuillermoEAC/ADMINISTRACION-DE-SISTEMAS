@@ -1,0 +1,44 @@
+========================================================================
+TAREA 4: SERVICIO SSH (LINUX)
+========================================================================
+
+Este módulo se compone del script 'tarea4_ssh.sh' y proporciona:
+1. Instalación automatizada y silenciosa del servidor OpenSSH ('openssh-server').
+2. Habilitación automática del servicio SSH en el arranque (Boot).
+3. Configuración para permitir el login directo como superusuario 'root' (modificando '/etc/ssh/sshd_config').
+4. Apertura del puerto 22 en el firewall UFW en caso de que esté activo.
+5. Diagnóstico de puerto de escucha 22 y guía de conexión para clientes externos.
+
+------------------------------------------------------------------------
+REQUISITOS PREVIOS:
+------------------------------------------------------------------------
+- Conexión a Internet para la descarga inicial de paquetes.
+- Privilegios de superusuario (root) para la ejecución.
+- Tener un cliente SSH en la máquina física (como PowerShell, CMD, Git Bash, Putty, etc.).
+
+------------------------------------------------------------------------
+INSTRUCCIONES DE EJECUCIÓN (SIN COMPILACIÓN):
+------------------------------------------------------------------------
+Este script es interpretado por Bash. Pasos para iniciar:
+
+1. Asignar permisos de ejecución:
+   $ chmod +x menu.sh
+   $ chmod +x tarea4_ssh.sh
+
+2. Ejecutar el orquestador principal con sudo:
+   $ sudo ./menu.sh
+
+3. Seleccionar la opción "4" para el Módulo Servidor SSH:
+   - Opción 1: Instalar y Configurar OpenSSH.
+   - Opción 2: Verificar Estado y Guía de Conexión (mostrará la IP exacta y el comando que debes ejecutar en el cliente).
+
+------------------------------------------------------------------------
+CONEXIÓN DESDE EL CLIENTE (WINDOWS / MAQUINA FÍSICA):
+------------------------------------------------------------------------
+Una vez habilitado el servicio, abre la consola en tu cliente y escribe:
+   $ ssh root@<IP_DEL_SERVIDOR_LINUX>
+
+Ejemplo:
+   $ ssh root@192.168.10.1
+
+Introduce la contraseña del usuario root del servidor Linux para validar el acceso.

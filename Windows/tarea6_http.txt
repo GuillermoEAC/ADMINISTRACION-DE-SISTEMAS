@@ -1,0 +1,48 @@
+========================================================================
+TAREA 6: DESPLIEGUE DINÁMICO DE SERVIDORES HTTP (WINDOWS SERVER)
+========================================================================
+
+Este módulo se compone del script PowerShell 'tarea6_http.ps1' y proporciona:
+1. Despliegue interactivo y forzoso del Rol de IIS con blindaje de seguridad mediante 'AppCmd.exe' (eliminando la cabecera 'X-Powered-By' y filtrando firmas del servidor).
+2. Instalación desatendida de Chocolatey (el gestor de paquetes de Windows) y posterior descarga e instalación de versiones específicas de Apache HTTPD ('apache-httpd') y Nginx ('nginx').
+3. Búsqueda inteligente a prueba de fallos de archivos de configuración 'httpd.conf' y 'nginx.conf' en el disco para aplicar la re-asignación de puertos.
+4. Hardening y seguridad en archivos de configuración:
+   - IIS: Elimina cabecera Server e inyecta X-Frame-Options (SAMEORIGIN) y X-Content-Type-Options (nosniff).
+   - Apache: Configura directivas 'ServerTokens Prod' y 'ServerSignature Off'.
+   - Nginx: Inyecta la directiva 'server_tokens off' en caliente.
+5. Generación de páginas 'index.html' personalizadas que identifican al servidor web, su versión instalada y el puerto de escucha.
+6. Gestión dinámica de reglas de Windows Defender Firewall para el puerto elegido.
+
+------------------------------------------------------------------------
+REQUISITOS PREVIOS:
+------------------------------------------------------------------------
+- Tener una conexión de internet activa para permitir las descargas del script Chocolatey y paquetes de software.
+- Ejecutar la sesión de PowerShell como Administrador.
+
+------------------------------------------------------------------------
+INSTRUCCIONES DE EJECUCIÓN (SIN COMPILACIÓN):
+------------------------------------------------------------------------
+Este script es interpretado por PowerShell. Pasos de inicio:
+
+1. Abrir PowerShell como Administrador.
+
+2. Habilitar la política de ejecución:
+   PS > Set-ExecutionPolicy RemoteSigned -Scope Process
+
+3. Ejecutar el orquestador principal:
+   PS > .\menu.ps1
+
+4. Seleccionar la opción "6" para el Módulo Servidor HTTP y elegir la opción del submenú:
+   - Opción 1: Despliegue dinámico de IIS (Instalación Forzosa).
+   - Opción 2: Despliegue dinámico de Apache Win64 (descargará dependencias, Chocolatey y Apache).
+   - Opción 3: Despliegue dinámico de Nginx para Windows (realizará la descarga, configurará 'nginx.conf' e iniciará el proceso de fondo de manera oculta).
+   - Opción 4: Verificar instalaciones y puertos activos (ejecutará comprobaciones de servicios y sockets).
+
+------------------------------------------------------------------------
+VERIFICACIONES DEL LADO CLIENTE:
+------------------------------------------------------------------------
+Introduce en tu navegador desde la máquina física:
+   http://<IP_DEL_SERVIDOR_WINDOWS>:<PUERTO_CONFIGURADO>/
+
+Ejemplo:
+   http://192.168.10.2:8888 (para Nginx en puerto 8888)

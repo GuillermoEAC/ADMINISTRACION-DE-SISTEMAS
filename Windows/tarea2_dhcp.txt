@@ -1,0 +1,34 @@
+========================================================================
+TAREA 2: AUTOMATIZACIÓN Y GESTIÓN DEL SERVIDOR DHCP (WINDOWS SERVER)
+========================================================================
+
+Este módulo se compone del script PowerShell 'tarea2_dhcp.ps1' y proporciona:
+1. Instalación automatizada e inteligente del Rol DHCP en Windows Server (con opción de autodetectar fuentes locales en D:\sources\sxs si no hay internet).
+2. Verificación de estado del rol DHCP.
+3. Configuración interactiva del ámbito (Scope) DHCP (IP de servidor, rangos de pool, gateway y DNS dinámicos).
+4. Monitoreo en tiempo real de clientes conectados con concesiones activas.
+
+------------------------------------------------------------------------
+REQUISITOS PREVIOS:
+------------------------------------------------------------------------
+- Windows Server en ejecución (con el comando Get-WindowsFeature disponible).
+- Conexión a internet activa para descargar roles, o tener montada la imagen ISO de Windows Server en la unidad D: como respaldo.
+- Iniciar la terminal de PowerShell como Administrador.
+
+------------------------------------------------------------------------
+INSTRUCCIONES DE EJECUCIÓN:
+------------------------------------------------------------------------
+Este script es interpretado en PowerShell. Pasos de inicio:
+
+1. Abrir PowerShell como Administrador.
+
+2. Ajustar la política de ejecución:
+   PS > Set-ExecutionPolicy RemoteSigned -Scope Process
+
+3. Ejecutar el orquestador principal:
+   PS > .\menu.ps1
+
+4. Seleccionar la opción "2" para abrir el módulo DHCP y proceder en orden:
+   - Paso A: Seleccionar la opción "1" para instalar el Rol DHCP.
+   - Paso B: Seleccionar la opción "3" para configurar los parámetros (asigna la IP base como estática al adaptador e inicia el rango DHCP a partir de IP base + 1).
+   - Paso C: Para monitorear o ver las concesiones de red concedidas, utilizar la opción "4".

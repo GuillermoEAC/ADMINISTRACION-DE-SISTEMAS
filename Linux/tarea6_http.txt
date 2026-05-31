@@ -1,0 +1,40 @@
+========================================================================
+TAREA 6: DESPLIEGUE DINÁMICO DE SERVIDORES HTTP (LINUX DEBIAN)
+========================================================================
+
+Este módulo se compone del script 'tarea6_http.sh' y proporciona:
+1. Despliegue interactivo de los servidores web Apache2, Nginx y Tomcat (extracción manual de binarios oficiales).
+2. Hardening e implementación de directivas de seguridad robustas para evitar robo de información (evita la exposición de firmas de software o versiones del servidor).
+3. Estructuración y propiedad de directorios limitada al usuario administrador correspondiente (como 'webadmin_apache', 'webadmin_nginx', 'webadmin_tomcat') con permisos 750 para prevenir explotación local.
+4. Generación de páginas por defecto dinámicas indicando el puerto de escucha y el tipo de servidor instalado.
+
+------------------------------------------------------------------------
+REQUISITOS PREVIOS:
+------------------------------------------------------------------------
+- Conexión a Internet activa en la máquina para descargar repositorios de apt y binarios desde Apache Archive.
+- Privilegios de superusuario (root) para la ejecución.
+
+------------------------------------------------------------------------
+INSTRUCCIONES DE EJECUCIÓN:
+------------------------------------------------------------------------
+Este es un script interpretado en Bash. Pasos para iniciar:
+
+1. Asignar permisos de ejecución:
+   $ chmod +x menu.sh
+   $ chmod +x tarea6_http.sh
+
+2. Ejecutar a través del orquestador principal:
+   $ sudo ./menu.sh
+
+3. Seleccionar la opción "6" en el menú principal:
+   - Opción 1: Despliegue dinámico de Apache2.
+   - Opción 2: Despliegue dinámico de Nginx.
+   - Opción 3: Despliegue dinámico de Tomcat (LTS 9.0.86 o Latest 10.1.19).
+   - Opción 4: Verificar instalaciones y puertos activos (ejecuta comprobaciones de sockets con ss -tuln).
+
+------------------------------------------------------------------------
+PRUEBA DE ESTADO:
+------------------------------------------------------------------------
+Para verificar qué puertos se encuentran levantados y los servicios activos de HTTP:
+   $ ss -tuln | grep -E ':(80|443|8080|8888)'
+   $ systemctl status apache2 nginx tomcat

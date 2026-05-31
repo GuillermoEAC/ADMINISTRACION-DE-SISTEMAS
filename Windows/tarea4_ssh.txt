@@ -1,0 +1,46 @@
+========================================================================
+TAREA 4: SERVICIO SSH (WINDOWS SERVER)
+========================================================================
+
+Este módulo se compone del script PowerShell 'tarea4_ssh.ps1' y proporciona:
+1. Configuración de IP fija en la interfaz 'Ethernet 3' (192.168.100.20/24).
+2. Instalación automatizada del servidor nativo de OpenSSH en Windows Server utilizando capacidades en línea ('Add-WindowsCapability').
+3. Configuración para que el servicio ('sshd') inicie automáticamente con el sistema operativo (arranque).
+4. Creación y habilitación de regla de entrada en Windows Defender Firewall para permitir la comunicación por el puerto 22.
+5. Diagnóstico de puerto de escucha 22 y comandos recomendados para que el cliente externo acceda.
+
+------------------------------------------------------------------------
+REQUISITOS PREVIOS:
+------------------------------------------------------------------------
+- Conexión a internet activa para descargar la capacidad en línea de OpenSSH Server.
+- Disponer de una interfaz de red llamada exactamente 'Ethernet 3' para su configuración de red independiente.
+- Ejecutar la sesión de PowerShell como Administrador.
+
+------------------------------------------------------------------------
+INSTRUCCIONES DE EJECUCIÓN (SIN COMPILACIÓN):
+------------------------------------------------------------------------
+El script es interpretado por PowerShell. Pasos de inicio:
+
+1. Abrir PowerShell como Administrador.
+
+2. Ajustar la política de ejecución en la sesión actual:
+   PS > Set-ExecutionPolicy RemoteSigned -Scope Process
+
+3. Ejecutar el orquestador principal:
+   PS > .\menu.ps1
+
+4. Seleccionar la opción "4" para el módulo SSH y proceder:
+   - Opción 1: Configurar Red para SSH (asigna IP estática a la interfaz Ethernet 3).
+   - Opción 2: Instalar y Configurar OpenSSH.
+   - Opción 3: Verificar Estado y Guía de Conexión.
+
+------------------------------------------------------------------------
+CONEXIÓN DESDE EL EQUIPO CLIENTE HOST (MAQUINA FÍSICA):
+------------------------------------------------------------------------
+Desde la terminal del host (Cmd/PowerShell/Git Bash), escribe:
+   $ ssh Administrador@<IP_DEL_SERVIDOR_WINDOWS>
+
+Ejemplo:
+   $ ssh Administrador@192.168.100.20
+
+Ingresa la contraseña del usuario Administrador del servidor de Windows Server para validar el inicio de sesión.

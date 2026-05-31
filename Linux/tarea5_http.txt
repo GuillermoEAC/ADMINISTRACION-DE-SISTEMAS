@@ -1,0 +1,45 @@
+========================================================================
+TAREA 5 (HTTP): DESPLIEGUE DINÁMICO DE SERVIDORES HTTP CON UFW (LINUX)
+========================================================================
+
+Este módulo se compone del script 'tarea5_http.sh' y proporciona:
+1. Despliegue interactivo y dinámico de Apache2, Nginx o Tomcat (a partir de binarios oficiales).
+2. Opciones de configuración de puerto de escucha personalizado y selección de versión.
+3. Aplicación automática de directivas de seguridad para hardening:
+   - Apache2: Ocultación de cabeceras de firma del servidor (ServerTokens Prod/ServerSignature Off) y cabeceras X-Frame-Options/X-Content-Type-Options.
+   - Nginx: Desactivación de visualización de versión de software (server_tokens off) y cabeceras de protección.
+   - Tomcat: Ocultación del nombre del servidor en el conector HTTP, ejecución con usuario dedicado sin privilegios ('webadmin_tomcat') y enjaulado de permisos (750).
+4. Configuración automatizada y silenciosa del Firewall UFW, garantizando que no se pierda la conexión SSH (Puerto 22) al activar las reglas de seguridad para el puerto asignado.
+
+------------------------------------------------------------------------
+REQUISITOS PREVIOS:
+------------------------------------------------------------------------
+- Conexión temporal a Internet para descargar paquetes o binarios oficiales.
+- Privilegios de superusuario (root) para la ejecución.
+
+------------------------------------------------------------------------
+INSTRUCCIONES DE EJECUCIÓN (SIN COMPILACIÓN):
+------------------------------------------------------------------------
+Este script es interpretado por Bash. Pasos para iniciar:
+
+1. Asignar permisos de ejecución:
+   $ chmod +x menu.sh
+   $ chmod +x tarea5_http.sh
+
+2. Ejecutar el orquestador principal como root:
+   $ sudo ./menu.sh
+
+3. Seleccionar la opción "6" en el menú principal (que orquesta las implementaciones HTTP):
+   - Opción 1: Despliegue dinámico de Apache2 (permite definir versión y puerto).
+   - Opción 2: Despliegue dinámico de Nginx (permite definir versión y puerto).
+   - Opción 3: Despliegue de Tomcat (descarga binarios de Apache, instala Java JDK, crea servicio systemd e inicia Tomcat).
+   - Opción 4: Verificar puertos de escucha y estado de salud de todos los contenedores/servicios HTTP.
+
+------------------------------------------------------------------------
+COMPROBACIONES POST-DESPLIEGUE:
+------------------------------------------------------------------------
+Puedes acceder desde tu máquina física o navegador cliente introduciendo la IP del servidor y el puerto configurado:
+   http://<IP_DEL_SERVIDOR>:<PUERTO_CONFIGURADO>/
+
+Ejemplo:
+   http://192.168.10.1:8080 (para Nginx en puerto 8080)

@@ -1,0 +1,58 @@
+========================================================================
+PRÁCTICA 12: SERVIDOR DE CORREO COMPLETO Y WEBMAIL (DOCKER-MAILSERVER)
+========================================================================
+
+Este entorno despliega una suite de correo electrónico empresarial completa:
+1. 'mailserver': Servidor de correo basado en 'docker-mailserver' con soporte para SMTP (25), IMAP (143), SMTP Seguro/Submission (587), IMAP Seguro (993) y herramientas de spam/antivirus integradas.
+2. 'roundcube-db': Motor MariaDB 10.5 dedicado a almacenar los datos de configuración y perfiles de Roundcube.
+3. 'roundcubemail': Cliente de Webmail en PHP (Roundcube) expuesto externamente en el puerto 8081 para que los usuarios puedan enviar y recibir correos desde el navegador de forma visual.
+
+------------------------------------------------------------------------
+REQUISITOS PREVIOS:
+------------------------------------------------------------------------
+- Docker y Docker Compose v2 instalados en tu máquina.
+- Archivo '.env' configurado en la raíz de esta carpeta con las variables necesarias para el servidor de correo y credenciales de base de datos.
+
+------------------------------------------------------------------------
+PASOS PARA COMPILAR Y LEVANTAR EL ENTORNO:
+------------------------------------------------------------------------
+
+1. Configurar los parámetros en el archivo '.env':
+   Establece valores adecuados. Especialmente importantes:
+   - HOSTNAME (ej. mail)
+   - DOMAIN (ej. reprobados.com)
+   - DB_ROOT_PASSWORD
+   - DB_USER
+   - DB_PASSWORD
+
+2. Abrir una terminal en la ruta de la práctica:
+   $ cd /mnt/practicas/practica12
+   (o tu ruta local de la práctica)
+
+3. Iniciar la descarga de imágenes y el despliegue del correo en segundo plano:
+   $ docker compose up -d
+
+4. ESPERAR a que la base de datos y el servidor de correo inicialicen completamente. Puedes observar el estado con:
+   $ docker compose ps
+
+------------------------------------------------------------------------
+CREACIÓN Y GESTIÓN DE CUENTAS DE CORREO (CRÍTICO):
+------------------------------------------------------------------------
+docker-mailserver no incluye un panel administrativo web por defecto para crear usuarios. Debes darlos de alta desde la terminal ejecutando el script integrado dentro del contenedor activo:
+
+1. Añadir una cuenta de correo de prueba:
+   $ docker exec -it mailserver setup email add kami@reprobados.com "Sistemas.2026!"
+
+2. Listar cuentas de correo existentes para verificar:
+   $ docker exec -it mailserver setup email list
+
+------------------------------------------------------------------------
+PRUEBA DE ENVÍO Y RECEPCIÓN (ROUNDCUBE):
+------------------------------------------------------------------------
+- Abre tu navegador en la máquina física e ingresa a:
+  http://<IP_DEL_SERVIDOR>:8081/
+
+- Introduce las credenciales que acabas de crear (ej. kami@reprobados.com y "Sistemas.2026!") para iniciar sesión en tu bandeja de entrada local.
+
+- Para apagar el servidor de correo completamente:
+  $ docker compose down

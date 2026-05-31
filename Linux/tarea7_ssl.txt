@@ -1,0 +1,44 @@
+========================================================================
+TAREA 7: ORQUESTADOR HÍBRIDO E INFRAESTRUCTURA DE DESPLIEGUE SEGURO (LINUX)
+========================================================================
+
+Este módulo se compone del script 'tarea7_ssl.sh' y proporciona un flujo de despliegue de software corporativo con alta seguridad:
+1. Validación e instalación automática de dependencias críticas ('curl' y 'openssl').
+2. Conexión segura y autenticada a un repositorio FTP privado local.
+3. Descarga dinámica de paquetes de instalación de servicios web ('Apache', 'Nginx', 'vsftpd', 'Tomcat').
+4. Descarga paralela del hash del paquete para realizar una Verificación SHA256 automatizada para validar la integridad del archivo descargado antes de ejecutarlo.
+5. Instalación híbrida (desde repositorio Web oficial o Local FTP).
+6. Creación dinámica de certificados de cifrado SSL/TLS auto-firmados con OpenSSL.
+7. Inyección de la configuración HTTPS/FTPS segura de forma personalizada en los archivos de servicio de:
+   - Apache2: Genera site 'default-ssl.conf' y fuerza la redirección HTTP a HTTPS mediante módulo rewrite.
+   - Nginx: Sobrescribe el bloque de escucha a SSL en puerto seguro y habilita redireccionamiento.
+   - Tomcat10: Modifica dinámicamente el archivo XML '/etc/tomcat10/server.xml' para añadir el Connector HTTPS seguro apuntando a los certificados.
+   - vsftpd: Inyecta el soporte TLS implícito (ssl_enable=YES) en '/etc/vsftpd.conf'.
+
+------------------------------------------------------------------------
+REQUISITOS PREVIOS:
+------------------------------------------------------------------------
+- Tener levantado el Servidor FTP (Tarea 5) en la IP indicada en las variables globales de 'menu.sh' (192.168.56.104 por defecto).
+- Credenciales correctas de FTP configuradas en el encabezado de 'menu.sh'.
+- Ejecución con privilegios de root (SUDO).
+
+------------------------------------------------------------------------
+INSTRUCCIONES DE EJECUCIÓN (SIN COMPILACIÓN):
+------------------------------------------------------------------------
+El script es interpretado por Bash. Pasos de inicio:
+
+1. Asignar permisos de ejecución:
+   $ chmod +x menu.sh
+   $ chmod +x tarea7_ssl.sh
+
+2. Ejecutar el orquestador como root:
+   $ sudo ./menu.sh
+
+3. Seleccionar la opción "7" en el menú principal para abrir el orquestador híbrido:
+   - Opción 1: Instalación Segura (Repo Web/Privado)
+     * Elegir el servicio a desplegar (vsftpd, Apache, Nginx, Tomcat).
+     * Elegir origen (1: Descarga por apt-get, 2: Descarga por FTP privado).
+     * Definir puerto principal de escucha.
+     * Confirmar si se desea habilitar cifrado SSL/TLS e introducir el puerto seguro (ej. 443 o 8443).
+     * El script realizará la descarga, validación de firma checksum SHA256, instalación, configuración de certificados e inyección de seguridad en caliente.
+     * Muestra un reporte final detallando el estado de salud de cada componente.

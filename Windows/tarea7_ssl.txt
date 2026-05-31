@@ -1,0 +1,43 @@
+========================================================================
+TAREA 7: ORQUESTADOR DE INSTALACIÓN HÍBRIDA Y DESPLIEGUE SEGURO (WINDOWS SERVER)
+========================================================================
+
+Este módulo se compone del script PowerShell 'tarea7_ssl.ps1' y proporciona un flujo de orquestación de software seguro con:
+1. Liberación automática y profunda de puertos ocupados (elimina procesos bloqueados de Apache, Nginx o IIS antes de instalar).
+2. Generación dinámica de firmas de integridad SHA256 para instaladores .zip locales en la carpeta del repositorio FTP.
+3. Conexión segura e interactiva a un repositorio FTP privado local para descargar instaladores.
+4. Verificación de hash SHA256 en tiempo de descarga para confirmar la integridad del instalador y rechazar archivos corruptos.
+5. Instalación híbrida (Chocolatey en línea o Extracción local desde el repositorio FTP descargado).
+6. Creación automática y silenciosa de Certificados de Cifrado Auto-Firmados con 'New-SelfSignedCertificate' o OpenSSL.
+7. Inyección dinámica de configuración SSL y redirección HTTPS/FTPS forzada en caliente:
+   - IIS: Crea bindings SSL vinculados al certificado digital y añade reglas de re-escritura URL en 'web.config' para forzar la redirección automática de HTTP a HTTPS.
+   - Apache: Inyecta soporte para 'mod_ssl', añade la llave key/crt e inyecta directivas de redirección en 'httpd.conf'.
+   - Nginx: Sobrescribe 'nginx.conf' configurando el bloque SSL, puerto seguro y cabeceras Strict-Transport-Security (HSTS).
+   - IIS FTP: Configura bindings de certificados en IIS e implementa la política de FTPS forzado para credenciales y datos.
+
+------------------------------------------------------------------------
+REQUISITOS PREVIOS:
+------------------------------------------------------------------------
+- Tener una conexión de internet para descarga Web, o tener configurado el Repositorio FTP Local (Tarea 5) con los instaladores .zip de Apache/Nginx.
+- Ejecutar la sesión de PowerShell como Administrador.
+
+------------------------------------------------------------------------
+INSTRUCCIONES DE EJECUCIÓN (SIN COMPILACIÓN):
+------------------------------------------------------------------------
+Este script es interpretado en PowerShell. Pasos de inicio:
+
+1. Abrir PowerShell como Administrador.
+
+2. Ajustar la política de ejecución:
+   PS > Set-ExecutionPolicy RemoteSigned -Scope Process
+
+3. Ejecutar el orquestador:
+   PS > .\menu.ps1
+
+4. Seleccionar la opción "7" en el menú principal para acceder al Módulo de Servidor SSL (Tarea 7):
+   - Opción 1: Instalar IIS Web (SSL Dinámico).
+   - Opción 2: Instalar IIS FTP (SSL Dinámico).
+   - Opción 3: Instalar Apache (Descarga FTP/Web + SSL Dinámico).
+   - Opción 4: Instalar Nginx (Descarga FTP/Web + SSL Dinámico).
+
+5. El script te solicitará los puertos (HTTP y HTTPS), generará los certificados, inyectará la seguridad y mostrará en consola un Resumen de Instalaciones Exitosas detallando el estado del puerto, del proceso y del cifrado digital.

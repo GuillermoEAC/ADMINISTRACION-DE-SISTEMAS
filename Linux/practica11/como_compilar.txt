@@ -1,0 +1,50 @@
+========================================================================
+PRÁCTICA 11: BALANCEADOR DE CARGA, AISLAMIENTO Y BASE DE DATOS (DOCKER)
+========================================================================
+
+Este entorno despliega una red corporativa multi-capa altamente segura:
+1. 'nginx': Proxy Inverso y Balanceador expuesto en la red pública (Puerto 80). Redirige el tráfico a la red de datos interna.
+2. 'webapp': Aplicación web interna (Nginx) aislada del exterior, accesible únicamente a través del Proxy Inverso.
+3. 'db': Servidor PostgreSQL 15 con persistencia de datos interna ('pg_data') y comprobación de salud (healthcheck) activa.
+4. 'pgadmin': Panel web de gestión de base de datos pgAdmin 4. Espera a que la base de datos esté saludable ('healthy') antes de levantarse.
+
+------------------------------------------------------------------------
+REQUISITOS PREVIOS:
+------------------------------------------------------------------------
+- Docker y Docker Compose v2 instalados en tu máquina.
+- Archivo '.env' configurado en la raíz de esta carpeta con las variables de base de datos y credenciales iniciales.
+
+------------------------------------------------------------------------
+PASOS PARA COMPILAR Y LEVANTAR EL ENTORNO:
+------------------------------------------------------------------------
+
+1. Configurar o validar las credenciales en el archivo '.env':
+   Abre el archivo '.env' y asegúrate de establecer valores seguros para:
+   - POSTGRES_USER
+   - POSTGRES_PASSWORD
+   - POSTGRES_DB
+   - PGADMIN_EMAIL
+   - PGADMIN_PASSWORD
+
+2. Abrir una terminal en la ruta de la práctica:
+   $ cd /mnt/practicas/practica11
+   (o tu ruta local de la práctica)
+
+3. Ejecutar la compilación y levantamiento de la infraestructura en segundo plano:
+   $ docker compose up -d
+
+   Este comando leerá las variables de entorno de '.env', levantará las redes internas 'red_datos' y 'red_publica', creará el volumen y ejecutará los healthchecks.
+
+------------------------------------------------------------------------
+VERIFICACIÓN DE FUNCIONAMIENTO:
+------------------------------------------------------------------------
+- Listar estado de los contenedores y verificar que 'cluster_postgres' reporte "(healthy)":
+  $ docker compose ps
+
+- Probar el acceso a la aplicación interna oculta a través del Proxy Inverso:
+  Ingresa desde tu navegador en la máquina física a la IP de tu servidor en el puerto 80:
+  http://<IP_DEL_SERVIDOR>/
+  Debería responder el mensaje "App Interna FIM - Conexión exitosa a través del proxy".
+
+- Detener el entorno de contenedores:
+  $ docker compose down

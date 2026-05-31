@@ -1,0 +1,48 @@
+========================================================================
+PRÁCTICA 10: CONTENEDORES DOCKER Y SEGURIDAD DE RECURSOS
+========================================================================
+
+Este entorno despliega una arquitectura de 3 contenedores coordinados:
+1. 'web': Servidor Apache personalizado (construido desde el subdirectorio ./web) con límites de recursos a 512MB RAM y 0.5 CPUs.
+2. 'db': Servidor PostgreSQL 15 (Alpine) con almacenamiento persistente.
+3. 'ftp': Servidor FTP ligero en Alpine con volumen compartido para actualizar el contenido del servidor Web de forma remota en caliente.
+
+------------------------------------------------------------------------
+REQUISITOS PREVIOS:
+------------------------------------------------------------------------
+- Docker y Docker Compose (v2) instalados en la máquina Debian/Ubuntu.
+- Haber creado previamente la red externa y los volúmenes configurados como 'externos' en el archivo compose.
+
+------------------------------------------------------------------------
+PASOS PARA COMPILAR Y LEVANTAR EL CONTENEDOR:
+------------------------------------------------------------------------
+
+1. Abrir una terminal en la ruta de la práctica:
+   $ cd /mnt/practicas/practica10
+   (o el directorio local donde tengas la práctica)
+
+2. Crear la red externa requerida:
+   $ docker network create infra_red
+
+3. Crear los volúmenes externos para la persistencia:
+   $ docker volume create db_data
+   $ docker volume create web_content
+
+4. Compilar las imágenes locales (Dockerfile de web) y arrancar la infraestructura en segundo plano (desatendido):
+   $ docker compose up -d --build
+
+   O bien, ejecutar como root '$ sudo ./menu.sh', seleccionar la opción "8" (Módulo Práctica 10: Contenedores Docker) y elegir la opción "1" para desplegar silenciosamente.
+
+------------------------------------------------------------------------
+VERIFICACIÓN Y DIAGNÓSTICO:
+------------------------------------------------------------------------
+- Comprobar que los contenedores están arriba y verificar los puertos expuestos (80 y 21):
+  $ docker compose ps
+
+- Monitorear el límite estricto de recursos consumidos en tiempo real (requisito del Test 10.4):
+  $ docker stats --no-stream
+  (O seleccionar la Opción 2 dentro de la Opción 8 del menú principal)
+
+- Detener y limpiar los contenedores de forma ordenada sin perder los volúmenes persistentes:
+  $ docker compose down
+  (O seleccionar la Opción 3 dentro de la Opción 8 del menú principal)

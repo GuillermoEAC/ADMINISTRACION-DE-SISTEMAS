@@ -1,0 +1,43 @@
+========================================================================
+TAREA 3: AUTOMATIZACIÓN DEL SERVIDOR DNS (WINDOWS SERVER)
+========================================================================
+
+Este módulo se compone del script PowerShell 'tarea3_dns.ps1' y proporciona:
+1. Instalación silenciosa del Rol DNS de Active Directory/Windows Server.
+2. Comprobación del estado del Rol DNS.
+3. Creación interactiva y validada de Zonas de Búsqueda Directa e Inversa (registros A y PTR).
+4. Listado estructurado y borrado limpio de zonas configuradas para evitar residuos.
+
+------------------------------------------------------------------------
+REQUISITOS PREVIOS:
+------------------------------------------------------------------------
+- Windows Server levantado con privilegios de Administrador.
+- PowerShell abierto como Administrador.
+
+------------------------------------------------------------------------
+INSTRUCCIONES DE EJECUCIÓN (SIN COMPILACIÓN):
+------------------------------------------------------------------------
+El script es interpretado en PowerShell. Pasos de inicio:
+
+1. Abrir PowerShell como Administrador.
+
+2. Ajustar la política de ejecución en la consola:
+   PS > Set-ExecutionPolicy RemoteSigned -Scope Process
+
+3. Ejecutar el orquestador principal:
+   PS > .\menu.ps1
+
+4. Seleccionar la opción "3" para el módulo DNS y ejecutar las acciones del submenú:
+   - Opción 1: Instalar el Rol DNS.
+   - Opción 2: Verificar la instalación del Rol.
+   - Opción 3: Agregar Dominio (e.g. reprobados.com. Crea la zona directa, los registros A y el alias 'www'. A continuación, analiza la IP de destino, genera automáticamente la zona inversa PTR e inyecta la referencia).
+   - Opción 4: Listar dominios creados para auditar.
+   - Opción 5: Eliminar un dominio específico.
+   - Opción 6: Desinstalar completamente el Rol DNS.
+
+------------------------------------------------------------------------
+HERRAMIENTAS DE COMPROBACIÓN:
+------------------------------------------------------------------------
+Una vez creado el dominio, abre una consola cliente y ejecuta:
+   PS > nslookup <tu_dominio>
+   PS > nslookup <IP_del_servidor> (debería resolver tu nombre de dominio inverso)

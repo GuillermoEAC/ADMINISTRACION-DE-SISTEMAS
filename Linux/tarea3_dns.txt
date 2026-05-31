@@ -1,0 +1,45 @@
+========================================================================
+TAREA 3: AUTOMATIZACIÓN DEL SERVIDOR DNS (LINUX)
+========================================================================
+
+Este módulo se compone del script 'tarea3_dns.sh' y provee:
+1. Instalación silenciosa y autoreparable del servidor DNS BIND9 ('bind9', 'bind9utils').
+2. Verificación de IP estática configurada en la interfaz interna 'enp0s8'.
+3. Registro dinámico de nuevos dominios configurando automáticamente las zonas directas e inversas (registros A y PTR).
+4. Configuración local del sistema para usar el servidor DNS local en '/etc/resolv.conf'.
+5. Listado y eliminación interactiva de dominios DNS configurados.
+
+------------------------------------------------------------------------
+REQUISITOS PREVIOS:
+------------------------------------------------------------------------
+- Tener una dirección IP fija asignada en la interfaz de red interna 'enp0s8'.
+- Conexión temporal a Internet para la descarga de BIND9 (el script resolverá conflictos de resolución temporal apuntando a 8.8.8.8 en caso de ser necesario).
+- Ejecutar con permisos de administrador root (SUDO).
+
+------------------------------------------------------------------------
+INSTRUCCIONES DE EJECUCIÓN (SIN COMPILACIÓN):
+------------------------------------------------------------------------
+Este script es interpretado por Bash. Pasos para iniciar:
+
+1. Asegurar permisos de ejecución:
+   $ chmod +x menu.sh
+   $ chmod +x tarea3_dns.sh
+
+2. Ejecutar el orquestador como root:
+   $ sudo ./menu.sh
+
+3. Seleccionar la opción "3" para el Módulo Servidor DNS:
+   - Opción 1: Instalar DNS (BIND9).
+   - Opción 2: Verificar IP Estática en enp0s8.
+   - Opción 3: Agregar Dominio (e.g. reprobados.com, creará zona directa 'db.reprobados.com' e inversa correspondientes en /var/cache/bind/).
+   - Opción 4: Listar dominios configurados para validar.
+   - Opción 5: Eliminar un dominio registrado.
+   - Opción 6: Desinstalar por completo (purga total y limpieza de archivos residuales).
+
+------------------------------------------------------------------------
+VERIFICACIÓN DE FUNCIONAMIENTO COMPLEMENTARIO:
+------------------------------------------------------------------------
+Una vez creado un dominio, puedes validarlo utilizando herramientas estándar:
+   $ nslookup www.tu-dominio.com
+   $ dig tu-dominio.com
+   $ ping www.tu-dominio.com (debería resolver la IP configurada)

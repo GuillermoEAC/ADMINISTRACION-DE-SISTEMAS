@@ -1,0 +1,45 @@
+========================================================================
+TAREA 5: CONFIGURACIÓN Y GESTIÓN DEL SERVIDOR FTP (LINUX)
+========================================================================
+
+Este módulo se compone del script 'tarea5_ftp.sh' y proporciona:
+1. Instalación y configuración inicial de 'vsftpd' y soporte para ACLs.
+2. Estructura blindada de directorios para evitar el error "500 OOPS: vsftpd: refusing to run with writable root inside chroot".
+3. Acceso Anónimo seguro mediante un entorno "Lobby" controlado y enlazado a la carpeta física compartida 'general'.
+4. Alta automatizada de usuarios aislados en los grupos 'reprobados' y 'recursadores', estableciendo carpetas personales e inhabilitando el acceso de shell interactivo (/usr/sbin/nologin).
+5. Migración interactiva de usuarios entre grupos con re-montaje dinámico de carpetas.
+6. Eliminación limpia de usuarios eliminando montajes persistentes en '/etc/fstab' y archivos personales.
+
+------------------------------------------------------------------------
+REQUISITOS PREVIOS:
+------------------------------------------------------------------------
+- Conexión temporal a Internet para la descarga de 'vsftpd' y 'acl'.
+- Privilegios de superusuario (root) para la ejecución.
+
+------------------------------------------------------------------------
+INSTRUCCIONES DE EJECUCIÓN (SIN COMPILACIÓN):
+------------------------------------------------------------------------
+El script es interpretado por Bash y no requiere compilación previa. Pasos de inicio:
+
+1. Asignar permisos de ejecución:
+   $ chmod +x menu.sh
+   $ chmod +x tarea5_ftp.sh
+
+2. Ejecutar orquestador principal como root:
+   $ sudo ./menu.sh
+
+3. Seleccionar la opción "5" para abrir el Submenú del Servidor FTP y realizar los pasos:
+   - Paso A: Seleccionar la opción "1" para Configuración Inicial y Creación de carpetas.
+   - Paso B: Seleccionar la opción "2" para Verificar la correcta instalación y apertura del puerto 21.
+   - Paso C: Seleccionar la opción "3" para dar de alta usuarios especificando su grupo y credenciales.
+
+------------------------------------------------------------------------
+PRUEBA DE ACCESO FTP DESDE CLIENTE (INTERFAZ / TERMINAL):
+------------------------------------------------------------------------
+Desde la máquina cliente física o una terminal secundaria:
+- Acceso Anónimo (solo lectura del lobby/general):
+  $ ftp -A <IP_DEL_SERVIDOR>
+
+- Acceso Autenticado (lectura y escritura en la carpeta de grupo y privada):
+  $ ftp <IP_DEL_SERVIDOR>
+  (Introducir credenciales de usuario creado en la opción 3)

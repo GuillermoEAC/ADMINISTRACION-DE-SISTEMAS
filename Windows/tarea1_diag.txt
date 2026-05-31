@@ -1,0 +1,34 @@
+========================================================================
+TAREA 1: DIAGNÓSTICO Y CONFIGURACIÓN DE RED INTERNA (WINDOWS SERVER)
+========================================================================
+
+Este módulo se compone del script PowerShell 'tarea1_diag.ps1' y proporciona:
+1. Diagnóstico completo del servidor Windows (nombre de equipo, IP de red local en Ethernet 2 y espacio libre/usado en disco C:).
+2. Configuración robusta de IP Fija en la interfaz de red interna 'Ethernet 2'.
+3. Habilitación de regla ICMPv4 en Windows Defender Firewall para permitir respuestas a ping.
+
+------------------------------------------------------------------------
+REQUISITOS PREVIOS:
+------------------------------------------------------------------------
+- Tener una interfaz de red llamada exactamente 'Ethernet 2' en el servidor.
+- Ejecutar la sesión de PowerShell con privilegios de Administrador (Elevado).
+
+------------------------------------------------------------------------
+INSTRUCCIONES DE EJECUCIÓN (SIN COMPILACIÓN):
+------------------------------------------------------------------------
+Como este es un script de PowerShell interpretado, no se compila. Pasos de inicio:
+
+1. Abrir PowerShell como Administrador.
+
+2. Habilitar la política de ejecución de scripts temporalmente en la sesión actual:
+   PS > Set-ExecutionPolicy RemoteSigned -Scope Process
+
+3. Ir al directorio donde están ubicados los archivos de scripts:
+   PS > cd C:\Users\Administrator\Documents\GitHub\ADMINISTRACION-DE-SISTEMAS\Windows
+
+4. Iniciar el script orquestador principal:
+   PS > .\menu.ps1
+
+5. Seleccionar la opción "1" en el Menú Principal (Módulo de Diagnóstico y Configuración de Red):
+   - Opción 1: Ejecutar Diagnóstico de Sistema.
+   - Opción 2: Configurar Red Interna (establece la IP fija 192.168.10.2 en Ethernet 2 y habilita el ping).

@@ -1,0 +1,48 @@
+========================================================================
+TAREA 8: GOBERNANZA, CUOTAS Y CONTROL DE APLICACIONES (WINDOWS SERVER)
+========================================================================
+
+Este módulo se compone del script PowerShell 'tarea8_ad.ps1' y proporciona una completa suite de administración de Active Directory (AD) y control del servidor:
+1. Cálculo matemático binario de horarios de acceso en cuadrícula de bits y asignación a cuentas de usuario de AD en caliente ('logonhours').
+2. Importación y creación automatizada de cuentas de usuario desde un archivo CSV ('usuarios.csv') ubicado en el Escritorio.
+3. Creación de Unidades Organizativas (UOs) independientes llamadas "Cuates" y "No Cuates" en el dominio 'reprobados.com'.
+4. Asignación de horarios restrictivos:
+   - "Cuates": Permitido iniciar sesión únicamente de 8:00 AM a 3:00 PM.
+   - "No Cuates": Permitido iniciar sesión únicamente de 3:00 PM a 2:00 AM.
+5. Instalación e implementación de reglas de FSRM (File Server Resource Manager) de forma automatizada:
+   - Cuota estricta (Hard Quota) de 10MB para la carpeta 'C:\Perfiles\Cuates'.
+   - Cuota estricta de 5MB para la carpeta 'C:\Perfiles\NoCuates'.
+   - Filtro de pantalla activa ('File Screen') para bloquear archivos multimedia y ejecutables ('*.mp3', '*.mp4', '*.exe', '*.msi') en ambos directorios.
+6. Habilitación del servicio de identidad de aplicaciones ('AppIDSvc') y configuración de AppLocker:
+   - Crea un Grupo de Seguridad de Active Directory ('GrupoNoCuates') y añade a todos los usuarios de la UO 'No Cuates'.
+   - Genera una regla de denegación ('Deny') basada en firmas digitales de Hash para inhabilitar por completo el uso del Bloc de Notas ('notepad.exe') para ese grupo.
+7. Creación y vinculación automatizada de una GPO ('Politicas_FIM_CierreForzado') para forzar la desconexión del usuario cuando expire el horario de conexión de Active Directory.
+
+------------------------------------------------------------------------
+REQUISITOS PREVIOS:
+------------------------------------------------------------------------
+- El servidor Windows Server debe estar promovido a Controlador de Dominio (Active Directory habilitado en el dominio 'reprobados.com').
+- Disponer del archivo CSV 'usuarios.csv' colocado en el Escritorio del Administrador con el formato:
+  Nombre,Departamento,Password
+  usuario1,Cuates,Sistemas.2026!
+  usuario2,No Cuates,Sistemas.2026!
+- Ejecutar la sesión de PowerShell como Administrador.
+
+------------------------------------------------------------------------
+INSTRUCCIONES DE EJECUCIÓN (SIN COMPILACIÓN):
+------------------------------------------------------------------------
+Este script es interpretado en PowerShell. Pasos de inicio:
+
+1. Abrir PowerShell como Administrador.
+
+2. Habilitar la política de ejecución:
+   PS > Set-ExecutionPolicy RemoteSigned -Scope Process
+
+3. Ejecutar el orquestador principal:
+   PS > .\menu.ps1
+
+4. Seleccionar la opción "8" para abrir el Submenú de la Tarea 8 y ejecutar los pasos:
+   - Opción 1: Crear Estructura, Usuarios y Horarios (CSV) (limpiará cuentas previas y creará la nueva estructura importando desde el escritorio).
+   - Opción 2: Configurar Cuotas y Filtros (FSRM) (instalará el gestor, creará los directorios físicos y aplicará las cuotas y bloqueos multimedia).
+   - Opción 3: Configurar AppLocker (Hash) y GPO de Cierre (iniciará el servicio AppIDSvc, creará el grupo en AD, inyectará la regla Hash para notepad.exe y creará la GPO en el dominio).
+   - Opción 4: Ejecutar TODA la Práctica 08 Automáticamente (ejecutará las 3 opciones de forma consecutiva).

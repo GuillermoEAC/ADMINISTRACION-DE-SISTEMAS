@@ -1,0 +1,46 @@
+========================================================================
+TAREA 5: CONFIGURACIÓN Y GESTIÓN DEL SERVIDOR FTP (WINDOWS SERVER - IIS)
+========================================================================
+
+Este módulo se compone del script PowerShell 'tarea5_ftp.ps1' y proporciona:
+1. Instalación automatizada y silenciosa de IIS y el servicio FTP ('Web-Server', 'Web-FTP-Server').
+2. Estructuración física de carpetas raíz para los grupos base ('reprobados' y 'recursadores') y del lobby público/anónimo ('general').
+3. Configuración de Aislamiento de Usuarios en IIS ('IsolateAllDirectories') para evitar accesos cruzados.
+4. Aplicación de permisos NTFS ACL blindados utilizando identificadores de seguridad (SIDs universales) a prueba de idiomas (evita errores causados por los nombres de grupos o usuarios del sistema en inglés/español).
+5. Gestión interactiva y robusta de altas de usuarios con validaciones de contraseña complejas (requisito de seguridad).
+6. Creación automática de enlaces simbólicos locales ('mklink') para inyectar las carpetas de grupo y públicas en el directorio virtual aislado del usuario.
+7. Migración en caliente de usuarios entre grupos con re-enlace dinámico y borrado seguro de cuentas.
+
+------------------------------------------------------------------------
+REQUISITOS PREVIOS:
+------------------------------------------------------------------------
+- Un entorno de Windows Server activo.
+- Abrir una consola de PowerShell con privilegios de Administrador.
+
+------------------------------------------------------------------------
+INSTRUCCIONES DE EJECUCIÓN (SIN COMPILACIÓN):
+------------------------------------------------------------------------
+El script es interpretado en PowerShell. Pasos de inicio:
+
+1. Abrir PowerShell como Administrador.
+
+2. Ajustar la política de ejecución:
+   PS > Set-ExecutionPolicy RemoteSigned -Scope Process
+
+3. Ejecutar el script orquestador:
+   PS > .\menu.ps1
+
+4. Seleccionar la opción "5" para abrir el Submenú FTP y realizar en orden:
+   - Paso A: Seleccionar la opción "1" (Configuración inicial, instalará IIS FTP, creará las carpetas en C:\FTP, aplicará las ACLs, creará la regla de firewall en el puerto 21 y configurará el sitio de IIS).
+   - Paso B: Seleccionar la opción "2" para auditar que el rol esté activo, el puerto 21 a la escucha y las carpetas físicas disponibles.
+   - Paso C: Seleccionar la opción "3" para dar de alta usuarios especificando su contraseña compleja y asignándoles su grupo (reprobados o recursadores).
+
+------------------------------------------------------------------------
+PRUEBA DE CONEXIÓN DESDE CLIENTE:
+------------------------------------------------------------------------
+Una vez creado el usuario:
+- Acceso Anónimo (solo lectura de /general):
+  Utilizar un cliente FTP (como FileZilla) conectándose como "anonymous" sin contraseña.
+
+- Acceso Aislado (lectura/escritura en su carpeta y acceso a general/grupo):
+  Conectarse con el usuario creado y su contraseña correspondiente.

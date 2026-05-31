@@ -1,0 +1,41 @@
+========================================================================
+TAREA 2: AUTOMATIZACIÓN Y GESTIÓN DEL SERVIDOR DHCP (LINUX)
+========================================================================
+
+Este módulo se compone del script 'tarea2_dhcp.sh' y permite realizar:
+1. Instalación automatizada e inteligente de 'isc-dhcp-server'.
+2. Verificación del estado de instalación.
+3. Configuración interactiva y robusta con validaciones de IP del servidor, rango de IPs, puerta de enlace (Gateway), servidor DNS y tiempo de concesión.
+4. Monitoreo en tiempo real de clientes con direcciones IP concedidas.
+
+------------------------------------------------------------------------
+REQUISITOS PREVIOS:
+------------------------------------------------------------------------
+- Conexión a Internet temporal (adaptador NAT en VM) para descargar los paquetes iniciales.
+- Interfaz interna dedicada 'enp0s8' para servir las peticiones DHCP.
+- Ejecutar con privilegios de root (SUDO).
+
+------------------------------------------------------------------------
+INSTRUCCIONES DE EJECUCIÓN (SIN COMPILACIÓN):
+------------------------------------------------------------------------
+Este script es interpretado por Bash. Pasos para iniciarlo:
+
+1. Asegurar permisos de ejecución:
+   $ chmod +x menu.sh
+   $ chmod +x tarea2_dhcp.sh
+
+2. Ejecutar como superusuario:
+   $ sudo ./menu.sh
+
+3. Seleccionar la opción "2" para abrir el Submenú DHCP y seguir estos pasos recomendados:
+   - Paso A: Seleccionar la opción "1" para Instalar el servicio.
+   - Paso B: Seleccionar la opción "3" para configurar los parámetros de red interactivos (la IP de inicio se asignará al servidor y el rango del pool comenzará en esa IP + 1).
+   - Paso C: Monitorear clientes conectados usando la opción "4".
+
+------------------------------------------------------------------------
+DETALLES TÉCNICOS INTERNOS:
+------------------------------------------------------------------------
+- Escribe la configuración de subred en '/etc/dhcp/dhcpd.conf'.
+- Define la interfaz activa en '/etc/default/isc-dhcp-server'.
+- Reinicia y habilita el servicio mediante 'systemctl restart isc-dhcp-server'.
+- Recupera las concesiones analizando '/var/lib/dhcp/dhcpd.leases'.
